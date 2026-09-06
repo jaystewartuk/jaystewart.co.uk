@@ -389,6 +389,23 @@ The direction is the easy half. Four mechanisms keep it:
 - A **visual baseline** of 1,164 captures across 98 routes at six viewports in
   both themes, taken before anything moved.
 
+And a fifth thing, which is really a correction to the four above: for most of
+this work, two of them were not wired into the build gate at all. The visual
+and accessibility suites existed, passed when run, and ran only when somebody
+remembered to type the command.
+
+That is not a small caveat. The visual baselines went red on the main branch
+three separate times — twice from changes to the booking page, once from a
+change to the checkout copy — and each was discovered by hand, days later,
+while every gate on every push reported green. The accessibility suite carried
+eleven failures through two of my own reports that it was passing.
+
+A guard nobody runs is a file, not a guard. Both now run inside the step that
+already stands up a production build and a seeded database, because the build
+is the expensive part and paying for it twice would have been the excuse not to
+do this at all. The honest version of "four mechanisms keep it" is that
+mechanisms keep nothing until something forces them to run.
+
 Each caught something the others missed. The contrast test failed on its first
 run, on a colour introduced while writing the replacement palette. The
 accessibility sweep, extended to the signed-in product, found that the badge
@@ -439,11 +456,47 @@ ordering. A test can be green, specific, and well-commented while checking
 nothing at all.
 
 Raw palette utilities went from 119 to zero, ad-hoc scrim opacities from 51 to
-zero, and total bypasses from 453 across 104 files to 207 across 73. The
-remainder is a long tail of genuinely contextual values, and the raw
-`<button>` elements were deliberately left alone: most are drag handles and
-video-stage controls where the shared primitive would change what the element
-is, and none of them removes its focus ring.
+zero, and total bypasses from 453 across 104 files to 185 across 67. The
+remainder is a long tail of genuinely contextual values — a hero decoration
+offset, one grid template, one aspect ratio — where a name per single use would
+be worse than the number it replaced.
+
+### The accessibility pass, and being wrong about it twice
+
+I twice reported the accessibility suite green. It was not: eleven tests were
+failing, and both times I had read a truncated summary that printed "46 passed"
+while the failures scrolled above it. Running the checklist properly is the only
+reason they surfaced.
+
+Two pages skipped a heading level — an `h1` followed by an `h3`, with nothing in
+between for a screen reader navigating by outline to land on. One had been that
+way since long before this work. The fix separates a heading's tag from its
+size, because the document outline is an accessibility concern and visual weight
+is a design one, and a component that conflates them will get one of them wrong.
+
+An on-colour was dimmed with an opacity — white-ish text at 80% over the brand
+blue, rendering 3.56:1. There was no dimmed variant to reach for either: the
+full on-colour is `#f4f5f9` and AA needs at least `#edf3ff`, so the entire band
+between legible and white is about six values wide. Dimming an on-colour is not
+something that palette can do, which makes the rule "don't" rather than "use the
+other token". Fifty-four tinted grounds were on opacities too, while the real
+tokens for them already existed.
+
+And the one that explains the rest. Six pairings were solved to clear exactly
+4.5:1, passed the unit test, then failed axe in the browser at 4.39 to 4.44. The
+stylesheet stores each colour as `H S% L%` rounded to whole numbers, so what the
+browser paints sits up to seven units per channel from the value the test reads
+— enough on its own to break the threshold. The test checked the token; the
+browser renders the mirror. Every pairing is solved above 5.0 now, with the
+headroom named for what it is: the mirror's rounding error, budgeted rather than
+rediscovered.
+
+The raw `<button>` elements I had recorded as a considered exception, on the
+grounds that none of them removed its focus ring. True, and beside the point:
+110 of the 113 never had the brand's ring to remove, because there was no global
+rule and the design decision asked for a 3px ring that the framework had no way
+to express. One base-layer rule fixed all of them, which is the only version of
+that fix that reaches an element whose author never thought about focus.
 
 ## What it cost
 
