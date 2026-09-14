@@ -1,6 +1,0 @@
-{
-  "spiralclass": "/absolute/path/to/checkout",
-  "transit": "/absolute/path/to/checkout",
-  "groundtruth": "/absolute/path/to/checkout",
-  "anvil": "/absolute/path/to/checkout"
-}

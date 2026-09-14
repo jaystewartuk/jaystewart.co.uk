@@ -149,10 +149,6 @@ let scanned = 0;
 for (const file of files(target)) {
   if (file === SELF) continue;
 
-  // Skip anything gitignored-but-present that we deliberately exclude from the
-  // published repo; the local metric sources file names private directories.
-  if (file.endsWith('.metrics-sources.json')) continue;
-
   let text;
   try {
     text = readFileSync(file, 'utf8');

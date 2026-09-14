@@ -47,9 +47,9 @@ const caseStudies = defineCollection({
       .array(
         z.object({
           label: z.string(),
-          /** Key into src/data/metrics.json, so figures stay derived. */
+          /** Key into src/data/metrics.json, so each figure lives in one place. */
           from: z.string().optional(),
-          /** Literal value, for figures no script can count. */
+          /** Literal value, for figures not in metrics.json. */
           value: z.union([z.string(), z.number()]).optional(),
         }),
       )
