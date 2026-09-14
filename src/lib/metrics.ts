@@ -1,10 +1,10 @@
 import metrics from '../data/metrics.json';
 
 /**
- * Resolve figures quoted in content against the generated counts.
+ * Resolve figures quoted in content against src/data/metrics.json.
  *
  * Content references a figure by path — `spiralclass.apiRoutes` — rather than
- * writing the number. If the counter is renamed or removed, the build fails
+ * writing the number. If the figure is renamed or removed, the build fails
  * here instead of the site rendering `undefined` to a reader.
  */
 
@@ -25,7 +25,7 @@ export function count(path: string): number {
   if (!values) {
     throw new Error(
       `No metrics for project "${project}". Known: ${Object.keys(projects).join(', ')}. ` +
-        `Run \`pnpm metrics\` if a source was added.`,
+        `Add it to src/data/metrics.json.`,
     );
   }
 

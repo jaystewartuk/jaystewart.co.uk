@@ -10,10 +10,6 @@ test-results/
 playwright-report/
 coverage/
 
-# local metric sources — absolute paths and directory names for private
-# repositories, which are not public information. See .metrics-sources.example.json
-.metrics-sources.json
-
 # environment
 .env
 .env.*

@@ -26,7 +26,7 @@ No UI library, no icon package, no analytics library, no client router.
 ```
 src/
   content/          case studies and notes as MDX, schema-validated
-  data/             site identity, experience, generated metrics
+  data/             site identity, experience, metrics
   components/       presentational Astro components, no client JS
     Analytics.astro the one exception — the inline PostHog beacon
     diagrams/       CSS architecture diagrams — real text, not images
@@ -35,7 +35,6 @@ src/
   pages/            routes; [...slug] for collections, rss.xml.ts for the feed
   styles/global.css design system: palette, base, components, prose
 scripts/
-  count-metrics.mjs recount figures from the source repositories
   og.mjs            generate social images and icons
   check-stealth.mjs fail the build on names that must not be published
   check-links.mjs   fail the build on broken internal references
@@ -47,16 +46,12 @@ tests/
 
 ### Four decisions worth explaining
 
-**Figures are generated, not typed.** The previous site quoted "261 API
-endpoints" and "794 tests". Both were true when written and both had drifted by
-the time anyone read them. `scripts/count-metrics.mjs` counts from the real
-repositories into `src/data/metrics.json` with a `countedAt` date the footer
-renders. Content references a figure by key, so a renamed counter fails the
+**Every figure lives in one file, with its date.** The previous site quoted
+"261 API endpoints" and "794 tests". Both were true when written and both had
+drifted by the time anyone read them. `src/data/metrics.json` holds every
+figure and a `countedAt` date the footer renders, so a reader sees how old a
+number is. Content references a figure by key, so a renamed figure fails the
 build rather than rendering `undefined`.
-
-It runs locally and never in CI — the source repositories are private and are
-not checked out on the runner, and a build that can only happen on one laptop
-is not a build.
 
 **The palette is tested.** `src/lib/contrast.test.ts` asserts every colour
 pairing the design relies on against WCAG thresholds, in both themes, and
@@ -148,9 +143,8 @@ in `src/content.config.ts` is the contract; a missing field fails the build.
 Diagram components (`Diagram`, `Row`, `Node`, `Arrow`) and `Figure` are
 injected, so no imports are needed in the file.
 
-**Figures** — `cp .metrics-sources.example.json .metrics-sources.json`, point
-each key at a local checkout, then `pnpm metrics`. Commit the regenerated
-`src/data/metrics.json`.
+**Figures** — edit `src/data/metrics.json` and set `countedAt` to the day the
+figures were checked.
 
 **A social image** — add an entry to the `pages` array in `scripts/og.mjs`.
 The slug is the URL path with slashes replaced by hyphens, which is how
