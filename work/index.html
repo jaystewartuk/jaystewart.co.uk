@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work · Jay Stewart</title>
+<meta name="description" content="WantToJoin, a hostel plans page in pilot, and SpiralClass, a live payments and scheduling platform.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jaystewart.co.uk/work/">
+<meta property="og:title" content="Work · Jay Stewart">
+<meta property="og:description" content="WantToJoin, a hostel plans page in pilot, and SpiralClass, a live payments and scheduling platform.">
+<meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
+<main>
+<h1>Work</h1>
+<p>Two products since March 2026, both built largely with coding agents. I find out what users
+need, then ship it.</p>
+
+<h2>WantToJoin</h2>
+<p class="sub"><a href="https://wanttojoin.com">wanttojoin.com</a> · live pilot at one hostel · <a href="/work/wanttojoin/">case study</a></p>
+<p>A page per hostel that turns the evening's WhatsApp chaos into one link. Before writing code I
+read 2,800 messages from a hostel's guest WhatsApp group. The finding set the direction: its
+hosts are the customer, not the guests.</p>
+<ul>
+<li>From research to a pilot in three days, built with the hosts from what they actually did.</li>
+<li>An AI post writer that drafts every post in English and Spanish from the form's facts,
+checked in code. All 50 eval drafts pass, at about $0.0003 a post.</li>
+<li>Results at the end of the one-week pilot, on 14 October.</li>
+</ul>
+<p><a href="/work/wanttojoin/">Read the case study →</a></p>
+
+<h2>SpiralClass</h2>
+<p class="sub"><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></p>
+<p>A scheduling, payments and video platform for independent teachers. A teacher publishes a
+booking page and sells packages of classes; her students book, join the lesson in the browser
+and get materials afterwards; she gets paid. It runs in production with nine real users and
+one maintainer, so it is sized for correctness rather than scale.</p>
+<ul>
+<li>TypeScript end to end: Next.js 15, Postgres through Prisma, 82 models, durable background
+jobs.</li>
+<li>Two payment rails: Stripe Connect direct charges on the teacher's own account, and bank
+transfers through Wise, reconciled against its API.</li>
+<li>One definition of green, run the same way locally and in CI, including an integration suite
+against a real database with a migration drift check.</li>
+<li>More than a hundred decision records, several of them reversing an earlier call and saying
+why.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

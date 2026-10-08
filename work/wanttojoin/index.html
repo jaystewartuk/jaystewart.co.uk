@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WantToJoin · Jay Stewart</title>
+<meta name="description" content="Case study: a page per hostel, piloting at one hostel, that turns the evening's WhatsApp chaos into one link. Research, product decisions, an AI post writer with evals, and a live pilot.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jaystewart.co.uk/work/wanttojoin/">
+<meta property="og:title" content="WantToJoin · case study">
+<meta property="og:description" content="From 2,800 WhatsApp messages to a live pilot in three days: the decisions, the evidence behind them, and an AI feature with evals.">
+<meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
+<main>
+<h1>WantToJoin</h1>
+<p class="sub"><a href="https://wanttojoin.com">wanttojoin.com</a> · live pilot at one hostel, October 2026</p>
+<p class="lede">A page per hostel that turns the evening's WhatsApp chaos into one link: tonight's
+outing, who's going, and where the group is now. I built it in a week, alongside the hosts at one hostel.</p>
+<ul>
+<li><strong>Role:</strong> everything: research, product, design and engineering, built largely
+with coding agents.</li>
+<li><strong>Time:</strong> from research to a pilot in three days, then a one-week trial with the
+hosts using it daily.</li>
+<li><strong>Stack:</strong> Cloudflare Workers and D1, PostHog, and Claude Haiku for one
+feature.</li>
+</ul>
+
+<h2>The problem</h2>
+<p>Before writing any code I read 2,800 messages from five months of a hostel's guest
+WhatsApp group. The same things kept happening. Its social hosts posted each evening's
+outing several times a day. Polls got no more than three votes. Guests asked "where are you?"
+three or four times a week. Tour prices lived inside pictures.</p>
+<p>The finding that set the direction: <strong>the customer is the hosts, not the guests.</strong>
+Guests mostly want to know what's on tonight and where everyone is, and the hosts are already
+doing the work of organising it. So the first user was the host, and the product's job was to
+make their posting easier, not to get guests to make plans.</p>
+<p>I looked at the competition before building. Hostelworld's Linkups and SocialStay already do
+hostel events with RSVPs, so I built only what they don't: nothing to download, a live meeting
+pin, and a minimum headcount with a deadline, which is the number a host takes to a venue.</p>
+
+<h2>Decisions, and the evidence behind them</h2>
+<ul>
+<li><strong>Take the input the way it already arrives.</strong> The staff member who sets the
+week's rota answered my first message with a photo of the reception chalkboard, then a
+five-line list, then "Listo". He was never going to fill in a form. The same day I built a week
+view that takes exactly that: the board's lines, and a host's face to tap for each day.</li>
+<li><strong>Change the metric when a user corrects you.</strong> My plan said the page would save
+hosts from posting the same thing three times. One host told me that posting several times a day
+is her job. So the measure became "every host post carries the link", not "fewer posts". Ten
+minutes after getting the host link, she asked to share an outing that wasn't even hers.</li>
+<li><strong>Follow the money in a missed question.</strong> At 23:39 a guest asked when a tour
+ran, two hours after reception had closed. The answer was in the picture the hostel had posted,
+but people don't read pictures. The chat history showed a tour promoted daily for 22 days with no
+price; once a guest asked and got the price and time, a booking closed within 15 minutes. I put
+the tours on the page with prices and times, and gave each tour a link whose WhatsApp preview is
+its photo and price. The hostel earns commission on tours, so this is where the page can make it
+money.</li>
+<li><strong>Write down what not to build.</strong> Version one had no accounts, no chat, no
+payments and nothing for guests to create. Reminders on the hosts' phones waited until a host
+said they'd be useful, and then followed the times the hosts already post at.</li>
+</ul>
+
+<h2>Adding AI where the cost was real</h2>
+<p>Hosts write every post twice, in English and Spanish. "Write it for me" drafts both from the
+outing form's facts with Claude Haiku, and the host reads and edits the draft before saving
+it.</p>
+<ul>
+<li><strong>Checked in code.</strong> Every draft is checked for times, day, place and price, and
+for whether the page can split the two languages. A draft that fails gets one retry; if it still
+fails, the host is told what to check.</li>
+<li><strong>Measured with evals.</strong> I ran 25 outing forms twice each. Every check passed on
+all 50 drafts, 92% of them first time. Median response is 2.2 seconds and the cost is about
+$0.0003 a post.</li>
+<li><strong>The evals found bugs in my own checker.</strong> A place name was read as a weekday,
+and a price at the end of a sentence was read as a hundred times bigger. Both would have shown
+hosts false warnings. Both are fixed and covered by tests.</li>
+<li><strong>Next: judgement, not rules.</strong> Code can't catch a detail the host never gave,
+or an English title left in the Spanish half. I'll rate drafts by hand, use those ratings to set
+up a model-graded check, and score a prompt change against this baseline. Every draft is logged
+with whether the host kept or edited it, so real use becomes the next eval set.</li>
+</ul>
+
+<h2>Results so far</h2>
+<p>The pilot runs for one week, to 14 October, and I'll add the results here as they come
+in.</p>
+<p><strong>Day 1, honestly:</strong> every host post carried the link (4 of 4), and every post
+was followed by guests opening the page. One repost brought five phones in ten minutes. But nobody
+tapped "I'm in". Thirteen guests opened the page on a night when it rained and the hostel was
+nearly empty, and neither outing happened. One night can't separate the page from the weather.
+The rest of the week will.</p>
+<p>At the end of the week I'll measure:</p>
+<ul>
+<li>how many said "I'm in" against how many actually turned up</li>
+<li>"where are you?" messages against the baseline of three or four a week</li>
+<li>tour bookings that mention the page</li>
+<li>whether a second hostel agrees to share the page</li>
+</ul>
+
+<h2>How it's built and checked</h2>
+<ul>
+<li>Cloudflare Workers and D1 on the free plan. The pages are rendered on the server, work on any
+phone, and can be installed to the home screen.</li>
+<li>Built largely with coding agents. The agent isn't accountable and I am, so every change goes
+through a pull request with tests, and every change guests or hosts see is checked in a real
+browser at phone width, in both languages.</li>
+<li>A merge deploys, checks the live site, and rolls back by itself if the check fails.</li>
+<li>Analytics are designed around the experiment's questions: named events only, no session
+replay, and guests' names are never sent.</li>
+</ul>
+
+<h2>What's next</h2>
+<p>Day 7 decides it. If the hosts keep using the page without being asked, and turnout matches
+the RSVPs, I take the week's numbers to a second hostel. If not, I stop, against the success
+criteria I wrote down before building, and write up why.</p>
+<p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
+</main>
+</div>
+</body>
+</html>
