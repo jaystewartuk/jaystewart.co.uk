@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Beckon · Jay Stewart</title>
-<meta name="description" content="Build case study: Beckon, a remote inbox for terminal agents, with end-to-end encrypted messages and signed responses. Staging verified; not yet in production.">
+<meta name="description" content="Build case study: Beckon, a remote inbox for terminal agents, with end-to-end encrypted messages and signed responses. Live in production at beckoncli.com since October 2026.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jaystewart.co.uk/work/beckon/">
 <meta property="og:title" content="Beckon · build case study">
-<meta property="og:description" content="From a recurring developer pain to a remote inbox for terminal agents, designed around secure responses.">
+<meta property="og:description" content="From a recurring developer pain to a remote inbox for terminal agents, designed around secure responses and run in production on one hardened VM.">
 <meta property="og:image" content="https://jaystewart.co.uk/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -19,15 +19,15 @@
 <nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
 <main>
 <h1>Beckon</h1>
-<p class="sub"><a href="https://github.com/jaystewartuk/beckon">Source on GitHub</a> · staging verified · not in production</p>
+<p class="sub"><a href="https://beckoncli.com">beckoncli.com</a> · live since October 2026</p>
 <p class="lede">A remote inbox for terminal agents and long-running jobs. Beckon lets you see
 when a process needs attention and respond from a paired device.</p>
 <ul>
 <li><strong>Role:</strong> product discovery, specification, design and engineering.</li>
 <li><strong>Product:</strong> a Go CLI that wraps terminal programs, plus a live web inbox and
 installable phone app with notifications.</li>
-<li><strong>Status:</strong> core milestones implemented and staging verified. No production
-deployment or external user results yet.</li>
+<li><strong>Status:</strong> live in production at <a href="https://beckoncli.com">beckoncli.com</a>
+since October 2026. No external user results yet.</li>
 </ul>
 
 <h2>Finding the problem</h2>
@@ -65,12 +65,34 @@ pairing, push notifications, signed responses, prompt detection, then plans, bil
 deployment work. Tests cover terminal pass-through, crypto interoperability, server tampering,
 response handling and end-to-end flows.</p>
 
+<h2>Running it in production</h2>
+<p>Staging first ran on Cloud Run with a database that scales to zero. It worked, but it showed
+why that is the wrong shape for this product. A running helper holds a connection open for as
+long as its command runs, so with real users the service is rarely idle and costs about the same
+as an always-on machine. Cloud Run also cuts every connection after an hour, and the first helper
+after a quiet spell waits for a cold start. An agent blocked at 3 a.m. should not wait for a
+server to wake up before it can notify anyone.</p>
+<p>So production runs on one small VM: the app, Postgres and a web server in containers, for a
+few euros a month. I wrote down each step before taking it, then checked it on the live server.</p>
+<ul>
+<li><strong>Deploys</strong> ship a release over SSH, migrate, restart and wait for the health
+check. A rollback is the previous release and takes about 20 seconds.</li>
+<li><strong>Hardening:</strong> key-only SSH that is closed between sessions, only ports 80 and
+443 open, containers with no privileges and read-only file systems, and an app database user
+that can read and write rows and nothing else.</li>
+<li><strong>Backups</strong> run nightly, encrypted before they leave the server, to storage the
+server's own key cannot delete. I rehearsed a restore before launch.</li>
+<li><strong>Monitoring:</strong> an outside uptime check on the health endpoint, plus a
+five-minute check of disk, memory and containers on the server. That check is a dead man's
+switch: if it stops reporting, I get an alert.</li>
+</ul>
+<p>Payments still run in Stripe's test mode, and the repository is about to go public.</p>
+
 <h2>What remains to learn</h2>
-<p>The implementation is staging-verified, but Beckon is not deployed to production and has not
-been tested with external users. So there are no adoption or reliability results to claim yet.
-The next product step is to put it in front of developers who run agents across machines, watch
-where setup and trust break down, and decide from that evidence whether the product solves a
-frequent enough problem.</p>
+<p>Beckon is live, but no developers outside my own machines use it yet, so there are no
+adoption or reliability results to claim. The next step is to put it in front of developers who
+run agents across machines, watch where setup and trust break down, and decide from that evidence
+whether the problem is frequent enough to pay for.</p>
 
 <p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
 </main>
