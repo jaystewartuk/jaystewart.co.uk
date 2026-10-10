@@ -4,39 +4,52 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WantToJoin · Jay Stewart</title>
-<meta name="description" content="Case study: a page per hostel, piloting at one hostel, that turns the evening's WhatsApp chaos into one link. Research, product decisions, an AI post writer with evals, and a live pilot.">
+<meta name="description" content="Case study: WantToJoin, a page per hostel for tonight's outings, built from 2,800 real WhatsApp messages and taken from research to a live pilot in three days.">
+<link rel="canonical" href="https://jaystewart.co.uk/work/wanttojoin/">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jaystewart.co.uk/work/wanttojoin/">
 <meta property="og:title" content="WantToJoin · case study">
-<meta property="og:description" content="From 2,800 WhatsApp messages to a live pilot in three days: the decisions, the evidence behind them, and an AI feature with evals.">
+<meta property="og:description" content="From 2,800 WhatsApp messages to a live pilot at a hostel in three days.">
 <meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
 <div class="wrap">
-<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
-<main>
+<a class="brand" href="/">Jay Stewart</a>
+<nav aria-label="Main"><a href="/work/" aria-current="page">Work</a><a href="/working-with-me/">Working with me</a><a href="/contact/">Contact</a></nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="crumb"><a href="/work/">← Work</a></p>
+<p class="eyebrow">Case study</p>
 <h1>WantToJoin</h1>
-<p class="sub"><a href="https://wanttojoin.com">wanttojoin.com</a> · live pilot at one hostel, October 2026</p>
-<p class="lede">A page per hostel that turns the evening's WhatsApp chaos into one link: tonight's
-outing, who's going, and where the group is now. I built it in a week, alongside the hosts at one hostel.</p>
-<ul>
-<li><strong>Role:</strong> everything: research, product, design and engineering, built largely
-with coding agents.</li>
-<li><strong>Time:</strong> from research to a pilot in three days, then a one-week trial with the
-hosts using it daily.</li>
-<li><strong>Stack:</strong> Cloudflare Workers and D1, PostHog, and Claude Haiku for one
-feature.</li>
-</ul>
-
+<p class="lede">A page per hostel that turns the evening's WhatsApp chaos into one link: tonight's outing, who's going, and where the group is now. I built it in a week, alongside the hosts at one hostel.</p>
+<dl class="meta">
+<div><dt>Role</dt><dd>Research, product, design and engineering, built largely with coding agents</dd></div>
+<div><dt>Status</dt><dd><span class="chip pilot">Pilot</span> One-week trial at one hostel, to 14 October 2026</dd></div>
+<div><dt>Time</dt><dd>Research to a live pilot in three days</dd></div>
+<div><dt>Stack</dt><dd>Cloudflare Workers and D1, PostHog, Claude Haiku · <a href="https://wanttojoin.com">wanttojoin.com</a></dd></div>
+</dl>
+<figure class="hero-shot"><img src="/img/wanttojoin.webp" width="1600" height="1000" alt="WantToJoin landing page with a phone showing tonight's outing and who's going" decoding="async" fetchpriority="high"></figure>
+<article class="prose">
 <h2>The problem</h2>
 <p>Before writing any code I read 2,800 messages from five months of a hostel's guest
 WhatsApp group. The same things kept happening. Its social hosts posted each evening's
 outing several times a day. Polls got no more than three votes. Guests asked "where are you?"
 three or four times a week. Tour prices lived inside pictures.</p>
-<p>The finding that set the direction: <strong>the customer is the hosts, not the guests.</strong>
+<p>The finding that set the direction: <strong>build for the hosts, not the guests.</strong>
 Guests mostly want to know what's on tonight and where everyone is, and the hosts are already
 doing the work of organising it. So the first user was the host, and the product's job was to
 make their posting easier, not to get guests to make plans.</p>
@@ -90,9 +103,9 @@ with whether the host kept or edited it, so real use becomes the next eval set.<
 <p>The pilot runs for one week, to 14 October, and I'll add the results here as they come
 in.</p>
 <p><strong>Day 1, honestly:</strong> every host post carried the link (4 of 4), and every post
-was followed by guests opening the page. One repost brought five phones in ten minutes. But nobody
-tapped "I'm in". Thirteen guests opened the page on a night when it rained and the hostel was
-nearly empty, and neither outing happened. One night can't separate the page from the weather.
+was followed by guests opening the page. One repost brought five opens in eight minutes. But nobody
+tapped "I'm in". About eight phones opened the page, most of them guests', on a night when it
+rained and the hostel was nearly empty, and neither outing happened. One night can't separate the page from the weather.
 The rest of the week will.</p>
 <p>At the end of the week I'll measure:</p>
 <ul>
@@ -118,8 +131,18 @@ replay, and guests' names are never sent.</li>
 <p>Day 7 decides it. If the hosts keep using the page without being asked, and turnout matches
 the RSVPs, I take the week's numbers to a second hostel. If not, I stop, against the success
 criteria I wrote down before building, and write up why.</p>
-<p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
-</main>
+</article>
+<nav class="next" aria-label="More">
+<a href="/work/">← All work</a>
+<a href="/contact/">Get in touch →</a>
+</nav>
 </div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>Jay Stewart · Product engineer · UK-registered sole trader</span>
+<nav aria-label="Elsewhere"><a href="mailto:jay@jaystewart.co.uk">Email</a><a href="https://www.linkedin.com/in/jaystewartuk/">LinkedIn</a><a href="https://github.com/jaystewartuk">GitHub</a><a href="/Jay-Stewart-CV.pdf">CV</a></nav>
+</div>
+</footer>
 </body>
 </html>

@@ -4,34 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SpiralClass · Jay Stewart</title>
-<meta name="description" content="Case study: building and running SpiralClass, a scheduling, payments and video platform for independent teachers, shaped by real teacher needs.">
+<meta name="description" content="Case study: SpiralClass, a scheduling, payments and video platform for independent teachers, built and run solo, with Stripe Connect direct charges and a reconciled Wise rail.">
+<link rel="canonical" href="https://jaystewart.co.uk/work/spiralclass/">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jaystewart.co.uk/work/spiralclass/">
 <meta property="og:title" content="SpiralClass · case study">
-<meta property="og:description" content="Product decisions behind a live platform for independent teachers: teacher-owned lesson methods, local payments and reliable class workflows.">
+<meta property="og:description" content="A scheduling, payments and video platform for independent teachers, built and run solo.">
 <meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
 <div class="wrap">
-<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
-<main>
+<a class="brand" href="/">Jay Stewart</a>
+<nav aria-label="Main"><a href="/work/" aria-current="page">Work</a><a href="/working-with-me/">Working with me</a><a href="/contact/">Contact</a></nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="crumb"><a href="/work/">← Work</a></p>
+<p class="eyebrow">Case study</p>
 <h1>SpiralClass</h1>
-<p class="sub"><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></p>
-<p class="lede">A scheduling, payments and video platform for independent teachers. Teachers
-publish a booking page, sell class packages, meet students in the browser and share materials
-afterwards.</p>
-<ul>
-<li><strong>Role:</strong> product, design, engineering and operation, built and run solo with
-AI coding agents under review.</li>
-<li><strong>Status:</strong> live in production with nine real users. A small product, sized for
-correctness and one maintainer rather than scale.</li>
-<li><strong>Stack:</strong> TypeScript, Next.js, Postgres, Stripe Connect, Wise and browser-based
-video.</li>
-</ul>
-
+<p class="lede">A scheduling, payments and video platform for independent teachers. Teachers publish a booking page, sell class packages, meet students in the browser and share materials afterwards.</p>
+<dl class="meta">
+<div><dt>Role</dt><dd>Product, design, engineering and operation, solo, with coding agents under review</dd></div>
+<div><dt>Status</dt><dd><span class="chip live">Live</span> One teacher and her eight students; real payments</dd></div>
+<div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, self-hosted LiveKit video</dd></div>
+<div><dt>Links</dt><dd><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></dd></div>
+</dl>
+<figure class="hero-shot"><img src="/img/spiralclass.webp" width="1600" height="1000" alt="SpiralClass teacher dashboard: the week's classes, earnings and booking link (demo data)" decoding="async" fetchpriority="high"></figure>
+<article class="prose">
 <h2>Let the teacher own the method</h2>
 <p>An early teacher was developing a structured method for her language school. The existing AI
 lesson writer produced a generic lesson shape, which would leave her reworking drafts to match
@@ -64,19 +76,29 @@ correctness at the boundaries matter. A cancelled class has to restore or forfei
 credit; a payment has to reconcile to the right student and package; a student should only see
 their own teacher's content.</p>
 <p>I kept those rules in domain modules with integration coverage against a real database, and
-recorded product and architecture decisions as they changed. The repository contains more than
-125 decision records, including reversals that explain what new evidence changed the earlier
+recorded product and architecture decisions as they changed. The repository contains nearly
+150 decision records, including reversals that explain what new evidence changed the earlier
 choice.</p>
 
 <h2>What the evidence says so far</h2>
-<p>SpiralClass is live with nine real users, and I operate it as its only maintainer. That is
+<p>SpiralClass is live with one teacher and her eight students, real payments have gone
+through it, and I operate it as its only maintainer. That is
 evidence of a running product and real workflows, not evidence of scale. I do not have enough
 payment or feature-usage data to claim that the checkout changes improved conversion or that the
 template composer is widely used. The next decisions should follow what teachers and students
 actually use and where their work still gets stuck.</p>
-
-<p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
-</main>
+</article>
+<nav class="next" aria-label="More">
+<a href="/work/">← All work</a>
+<a href="/contact/">Get in touch →</a>
+</nav>
 </div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>Jay Stewart · Product engineer · UK-registered sole trader</span>
+<nav aria-label="Elsewhere"><a href="mailto:jay@jaystewart.co.uk">Email</a><a href="https://www.linkedin.com/in/jaystewartuk/">LinkedIn</a><a href="https://github.com/jaystewartuk">GitHub</a><a href="/Jay-Stewart-CV.pdf">CV</a></nav>
+</div>
+</footer>
 </body>
 </html>

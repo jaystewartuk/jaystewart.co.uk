@@ -4,32 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Beckon · Jay Stewart</title>
-<meta name="description" content="Build case study: Beckon, a remote inbox for terminal agents, with end-to-end encrypted messages and signed responses. Live in production at beckoncli.com since October 2026.">
+<meta name="description" content="Case study: Beckon, a remote inbox for terminal agents, with end-to-end encrypted messages and signed responses. Live in production at beckoncli.com since October 2026.">
+<link rel="canonical" href="https://jaystewart.co.uk/work/beckon/">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://jaystewart.co.uk/work/beckon/">
-<meta property="og:title" content="Beckon · build case study">
+<meta property="og:title" content="Beckon · case study">
 <meta property="og:description" content="From a recurring developer pain to a remote inbox for terminal agents, designed around secure responses and run in production on one hardened VM.">
 <meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
 <div class="wrap">
-<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
-<main>
+<a class="brand" href="/">Jay Stewart</a>
+<nav aria-label="Main"><a href="/work/" aria-current="page">Work</a><a href="/working-with-me/">Working with me</a><a href="/contact/">Contact</a></nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="crumb"><a href="/work/">← Work</a></p>
+<p class="eyebrow">Case study</p>
 <h1>Beckon</h1>
-<p class="sub"><a href="https://beckoncli.com">beckoncli.com</a> · live since October 2026</p>
-<p class="lede">A remote inbox for terminal agents and long-running jobs. Beckon lets you see
-when a process needs attention and respond from a paired device.</p>
-<ul>
-<li><strong>Role:</strong> product discovery, specification, design and engineering.</li>
-<li><strong>Product:</strong> a Go CLI that wraps terminal programs, plus a live web inbox and
-installable phone app with notifications.</li>
-<li><strong>Status:</strong> live in production at <a href="https://beckoncli.com">beckoncli.com</a>
-since October 2026. No external user results yet.</li>
-</ul>
-
+<p class="lede">A remote inbox for terminal agents and long-running jobs. Beckon lets you see when a process needs attention and respond from a paired device.</p>
+<dl class="meta">
+<div><dt>Role</dt><dd>Product discovery, specification, design, engineering and operations</dd></div>
+<div><dt>Status</dt><dd><span class="chip live">Live</span> Since October 2026; no outside users yet</dd></div>
+<div><dt>Product</dt><dd>A Go CLI that wraps terminal programs, a live web inbox and an installable phone app with notifications</dd></div>
+<div><dt>Links</dt><dd><a href="https://beckoncli.com">beckoncli.com</a></dd></div>
+</dl>
+<figure class="hero-shot"><img src="/img/beckon.webp" width="1600" height="1000" alt="Beckon landing page: your terminal jobs, on your phone" decoding="async" fetchpriority="high"></figure>
+<article class="prose">
 <h2>Finding the problem</h2>
 <p>I reviewed the Hacker News front page and its discussion threads for needs that appeared
 independently. Four stories pointed to the same gap: developers run agents and long jobs on
@@ -93,9 +107,18 @@ switch: if it stops reporting, I get an alert.</li>
 adoption or reliability results to claim. The next step is to put it in front of developers who
 run agents across machines, watch where setup and trust break down, and decide from that evidence
 whether the problem is frequent enough to pay for.</p>
-
-<p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
-</main>
+</article>
+<nav class="next" aria-label="More">
+<a href="/work/">← All work</a>
+<a href="/contact/">Get in touch →</a>
+</nav>
 </div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>Jay Stewart · Product engineer · UK-registered sole trader</span>
+<nav aria-label="Elsewhere"><a href="mailto:jay@jaystewart.co.uk">Email</a><a href="https://www.linkedin.com/in/jaystewartuk/">LinkedIn</a><a href="https://github.com/jaystewartuk">GitHub</a><a href="/Jay-Stewart-CV.pdf">CV</a></nav>
+</div>
+</footer>
 </body>
 </html>

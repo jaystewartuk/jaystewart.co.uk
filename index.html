@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jay Stewart, product engineer</title>
-<meta name="description" content="Product engineer available for remote contract work with early-stage startups. I find out what users need, then ship it with coding agents: a live payments platform, and a hostel pilot built from 2,800 real messages. UK citizen, UK-registered sole trader.">
+<meta name="description" content="Product engineer available for remote contract work with early-stage startups. I find out what users need, then ship it with coding agents: a teacher platform taking real payments, an inbox for terminal agents, and a hostel pilot built from 2,800 real messages.">
+<link rel="canonical" href="https://jaystewart.co.uk/">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jaystewart.co.uk/">
 <meta property="og:title" content="Jay Stewart, product engineer">
@@ -14,48 +17,112 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
 <div class="wrap">
-<nav><a href="/" aria-current="page">Jay Stewart</a><a href="/work/">Work</a><a href="/contact/">Contact</a></nav>
-<main>
-<h1>Jay Stewart</h1>
-<p class="lede">Product engineer. I find out what users need, then ship it with coding agents.</p>
-<p><strong>Available now for remote contract work</strong> with early-stage startups: MVPs, first versions
-and product engineering. UK citizen, UK-registered sole trader. <a href="/contact/">Get in touch</a>,
-read <a href="/working-with-me/">how working with me works</a> or <a href="/Jay-Stewart-CV.pdf">my CV (PDF)</a>.</p>
-
-<h2>What I've shipped</h2>
-<ul>
-<li><strong><a href="/work/wanttojoin/">WantToJoin</a></strong>: before writing code I read 2,800
-messages from a hostel's guest WhatsApp group. They showed the hosts, not the guests, were the
-customer. Three days later it was in a live pilot at that hostel. I'll publish the results, good
-or bad, after the one-week trial ends on 14 October.</li>
-<li><strong><a href="/work/beckon/">Beckon</a></strong>: a remote inbox for terminal agents. I
-turned a repeated developer pain into a Go CLI and web app, with end-to-end encrypted messages
-and signed remote responses. Live at <a href="https://beckoncli.com">beckoncli.com</a> since October 2026; no outside users yet.</li>
-<li><strong><a href="/work/spiralclass/">SpiralClass</a></strong>: a scheduling, payments and video platform
-for independent teachers, built and run solo. It is live on real payment rails (Stripe Connect and
-Wise) with nine real users, and every change goes through a pull request and a gate.</li>
-</ul>
-<p>More on the <a href="/work/">work page</a>.</p>
-
-<h2>How I work</h2>
-<ul>
-<li><strong>Start with users.</strong> I talk to them, read what they actually say, and change the
-plan when the evidence points somewhere else.</li>
-<li><strong>Experiments have a stopping rule.</strong> The hypothesis, what to measure and when to
-kill it are written down before any code.</li>
-<li><strong>I own what the agents write.</strong> I build with coding agents, and every change
-goes through a pull request, tests and a check in a real browser.</li>
-</ul>
-
-<h2>Before this</h2>
-<p>Eight years of e-commerce backend work on systems that hold other people's money, including
-Dyson's store, and a booking and payment platform I built and ran for four years. For contract
-work I start with a two-week paid trial, so you can judge the result before committing to more.</p>
-</main>
+<a class="brand" href="/" aria-current="page">Jay Stewart</a>
+<nav aria-label="Main"><a href="/work/">Work</a><a href="/working-with-me/">Working with me</a><a href="/contact/">Contact</a></nav>
 </div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="status"><span class="dot" aria-hidden="true"></span>Available now for remote contract work</p>
+<h1>I find out what users need, then ship it with coding agents.</h1>
+<p class="lede">I'm <strong>Jay Stewart</strong>, a product engineer. I work across the whole product: talking to users, design, code, payments and running it in production. I'm looking for contract work with early-stage startups.</p>
+<div class="actions">
+<a class="btn primary" href="mailto:jay@jaystewart.co.uk?subject=Contract%20work">Email me</a>
+<a class="btn" href="/working-with-me/">How I work with clients</a>
+<a class="btn" href="/Jay-Stewart-CV.pdf">CV (PDF)</a>
+</div>
+<p class="fineprint">UK citizen, UK-registered sole trader. Overlaps UK afternoons and US working hours.</p>
+
+<div class="facts">
+<div><b>3</b><span>products shipped since March 2026</span></div>
+<div><b>2</b><span>live in production, one taking real payments</span></div>
+<div><b>8 years</b><span>of e-commerce backends before, including Dyson's store</span></div>
+</div>
+
+<h2 class="section-title">Selected work</h2>
+<div class="projects">
+<article class="project">
+<a class="shot" href="/work/spiralclass/" tabindex="-1" aria-hidden="true"><img src="/img/spiralclass.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
+<div class="body">
+<div class="project-head"><h3><a href="/work/spiralclass/">SpiralClass</a></h3><span class="chip live">Live · real payments</span></div>
+<p>Scheduling, payments and video for independent teachers. Built and run solo; in production with a teacher and her eight students.</p>
+<ul>
+<li>Stripe Connect direct charges on the teacher's own account, so the platform never holds the money. Wise as a second rail, reconciled through its API.</li>
+<li>About 870 test files and one definition of green, run the same way locally and in CI, including real-database integration tests and a migration drift check.</li>
+<li>Nearly 150 decision records, several of them reversing an earlier call and saying why.</li>
+</ul>
+<ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>Prisma</li><li>Stripe Connect</li><li>Wise</li><li>LiveKit</li><li>Inngest</li></ul>
+<p class="sub"><a class="more" href="/work/spiralclass/">Read the case study →</a> · <a href="https://spiralclass.com/demo">Live demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">Source</a></p>
+</div>
+</article>
+<article class="project">
+<a class="shot" href="/work/wanttojoin/" tabindex="-1" aria-hidden="true"><img src="/img/wanttojoin.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
+<div class="body">
+<div class="project-head"><h3><a href="/work/wanttojoin/">WantToJoin</a></h3><span class="chip pilot">Pilot · one hostel</span></div>
+<p>A page per hostel for tonight's outings and who's going. Before writing code I read 2,800 messages from a hostel's guest WhatsApp group. They showed that the hosts, not the guests, were the people to build for.</p>
+<ul>
+<li>From research to a live pilot at that hostel in three days.</li>
+<li>An AI post writer drafts every post in English and Spanish, checked in code. All 50 eval drafts pass, at about $0.0003 a post.</li>
+<li>Pilot results, good or bad, published after it ends on 14 October.</li>
+</ul>
+<ul class="tags" aria-label="Stack"><li>Cloudflare Workers</li><li>D1</li><li>PostHog</li><li>Claude Haiku</li></ul>
+<p class="sub"><a class="more" href="/work/wanttojoin/">Read the case study →</a> · <a href="https://wanttojoin.com">wanttojoin.com</a></p>
+</div>
+</article>
+<article class="project">
+<a class="shot" href="/work/beckon/" tabindex="-1" aria-hidden="true"><img src="/img/beckon.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
+<div class="body">
+<div class="project-head"><h3><a href="/work/beckon/">Beckon</a></h3><span class="chip live">Live · October 2026</span></div>
+<p>A remote inbox for terminal agents. Your phone tells you when Claude Code or a build is waiting, and you approve or deny from the lock screen.</p>
+<ul>
+<li>End-to-end encrypted. The helper only types a response signed by a device you paired with a six-word safety code.</li>
+<li>A Go helper, a Next.js and WebSocket service, and an installable web app with push notifications.</li>
+<li>Runs on one hardened VM with monitoring, a dead man's switch and tested, encrypted offsite backups. No outside users yet.</li>
+</ul>
+<ul class="tags" aria-label="Stack"><li>Go</li><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>WebSockets</li><li>Web Push</li></ul>
+<p class="sub"><a class="more" href="/work/beckon/">Read the case study →</a> · <a href="https://beckoncli.com">beckoncli.com</a></p>
+</div>
+</article>
+</div>
+
+<h2 class="section-title">How I work</h2>
+<ol class="principles">
+<li><strong>Start with users.</strong><span>I talk to them, read what they actually say, and change the plan when the evidence points somewhere else.</span></li>
+<li><strong>Experiments have a stopping rule.</strong><span>The hypothesis, what to measure and when to stop are written down before any code.</span></li>
+<li><strong>I own what the agents write.</strong><span>I build with coding agents, and every change goes through a pull request, tests and a check in a real browser.</span></li>
+</ol>
+
+<h2 class="section-title">Before this</h2>
+<ol class="timeline">
+<li><time>2026 – now</time><div><b>Independent product engineer</b><span>SpiralClass, WantToJoin and Beckon, built largely with coding agents.</span></div></li>
+<li><time>2020 – 2026</time><div><b>Career break</b><span>A planned six-year break, travelling on savings. Back in March 2026 because coding agents changed what one person can ship.</span></div></li>
+<li><time>2017 – 2020</time><div><b>G&amp;V | Venture Brands Agency</b><span>Contract backend engineer on high-traffic e-commerce, including Dyson's store.</span></div></li>
+<li><time>2016 – 2020</time><div><b>Thrive Chiropractic</b><span>Designed, built and ran a booking and payment platform for nearly four years.</span></div></li>
+<li><time>2014 – 2016</time><div><b>Folk Digital</b><span>Backend features and integrations for e-commerce clients.</span></div></li>
+<li><time>2012 – 2014</time><div><b>C3 Media</b><span>From junior PHP developer to building full e-commerce systems on my own.</span></div></li>
+</ol>
+
+<section class="cta">
+<h2>Need a first version, or a second pair of hands?</h2>
+<p>Email me what you're building and what you need first. Within a working day I'll reply with whether it fits and what the first two weeks could look like.</p>
+<div class="actions"><a class="btn primary" href="mailto:jay@jaystewart.co.uk?subject=Contract%20work">Email jay@jaystewart.co.uk</a><a class="btn" href="/working-with-me/">How an engagement works</a></div>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>Jay Stewart · Product engineer · UK-registered sole trader</span>
+<nav aria-label="Elsewhere"><a href="mailto:jay@jaystewart.co.uk">Email</a><a href="https://www.linkedin.com/in/jaystewartuk/">LinkedIn</a><a href="https://github.com/jaystewartuk">GitHub</a><a href="/Jay-Stewart-CV.pdf">CV</a></nav>
+</div>
+</footer>
 </body>
 </html>
