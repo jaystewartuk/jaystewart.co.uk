@@ -19,7 +19,7 @@
 <nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
 <main>
 <h1>Work</h1>
-<p>Two products since March 2026, both built largely with coding agents. I find out what users
+<p>Three products since March 2026, built largely with coding agents. I find out what users
 need, then ship it.</p>
 
 <h2>WantToJoin</h2>
@@ -34,6 +34,22 @@ checked in code. All 50 eval drafts pass, at about $0.0003 a post.</li>
 <li>Results at the end of the one-week pilot, on 14 October.</li>
 </ul>
 <p><a href="/work/wanttojoin/">Read the case study →</a></p>
+
+<h2>Beckon</h2>
+<p class="sub"><a href="https://github.com/jaystewartuk/beckon">source</a> · staging verified · not in production</p>
+<p>A remote inbox for terminal agents and long-running jobs. When a process is blocked, Beckon
+can notify you; paired devices can respond without sending keystrokes through the server. I
+turned a pattern in developer discussions into a product hypothesis, then built the CLI, service
+and installable web app end to end.</p>
+<ul>
+<li>A Go helper wraps commands in a PTY and reads OSC 7501 status, with prompt detection for
+tools that do not report status themselves.</li>
+<li>Messages are end-to-end encrypted. Pairing compares a six-word safety code, and the helper
+checks signed responses against locally trusted devices before typing an offered choice.</li>
+<li>Web Push, live session updates, a mobile PWA, account plans and billing are implemented;
+production deployment and external user validation remain ahead.</li>
+</ul>
+<p><a href="/work/beckon/">Read the build case study →</a></p>
 
 <h2>SpiralClass</h2>
 <p class="sub"><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></p>

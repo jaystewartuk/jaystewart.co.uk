@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beckon · Jay Stewart</title>
+<meta name="description" content="Build case study: Beckon, a remote inbox for terminal agents, with end-to-end encrypted messages and signed responses. Staging verified; not yet in production.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jaystewart.co.uk/work/beckon/">
+<meta property="og:title" content="Beckon · build case study">
+<meta property="og:description" content="From a recurring developer pain to a remote inbox for terminal agents, designed around secure responses.">
+<meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
+<main>
+<h1>Beckon</h1>
+<p class="sub"><a href="https://github.com/jaystewartuk/beckon">Source on GitHub</a> · staging verified · not in production</p>
+<p class="lede">A remote inbox for terminal agents and long-running jobs. Beckon lets you see
+when a process needs attention and respond from a paired device.</p>
+<ul>
+<li><strong>Role:</strong> product discovery, specification, design and engineering.</li>
+<li><strong>Product:</strong> a Go CLI that wraps terminal programs, plus a live web inbox and
+installable phone app with notifications.</li>
+<li><strong>Status:</strong> core milestones implemented and staging verified. No production
+deployment or external user results yet.</li>
+</ul>
+
+<h2>Finding the problem</h2>
+<p>I reviewed the Hacker News front page and its discussion threads for needs that appeared
+independently. Four stories pointed to the same gap: developers run agents and long jobs on
+machines they are not always watching, then miss the moment those processes need a decision.</p>
+<p>That became the product hypothesis: one inbox across machines, with a phone notification when
+a job is blocked. I wrote the product spec before building, including the main user flows, a
+security model, acceptance criteria and explicit non-goals. The first version focuses on status
+and safe responses; it does not stream a remote terminal or allow arbitrary typing.</p>
+
+<h2>Making remote responses safe</h2>
+<p>A one-tap approval is useful only if the server cannot turn it into an arbitrary command. I
+designed the response flow so the phone selects an option, while the host keeps the actual
+keystrokes and decides whether the response is still valid.</p>
+<ul>
+<li>Message contents are encrypted from the host to paired devices; the service routes ciphertext.</li>
+<li>Pairing compares a six-word safety code derived from both devices' public keys. The host
+stores its own trusted-device list locally.</li>
+<li>The phone signs and encrypts an option choice. The helper verifies the signature, trust,
+record revision and offered option before writing anything to the terminal.</li>
+<li>Stale prompts, replayed responses and read-only sessions are rejected. Response outcomes are
+audited in the app.</li>
+</ul>
+<p>This changed the initial design: devices never send keystrokes, and the service never receives
+them. It narrows what a compromised service can do.</p>
+
+<h2>Building the whole path</h2>
+<p>The Go helper runs a command in a pseudo-terminal, passes terminal input and output through,
+and reads OSC 7501 status reports. For tools without status support, configurable prompt
+detection can identify known permission prompts. The service uses Next.js, WebSockets and
+Postgres to keep sessions live; the web app handles pairing, decryption and Web Push.</p>
+<p>I built the product as connected milestones: terminal reporting, live inbox, encryption and
+pairing, push notifications, signed responses, prompt detection, then plans, billing and
+deployment work. Tests cover terminal pass-through, crypto interoperability, server tampering,
+response handling and end-to-end flows.</p>
+
+<h2>What remains to learn</h2>
+<p>The implementation is staging-verified, but Beckon is not deployed to production and has not
+been tested with external users. So there are no adoption or reliability results to claim yet.
+The next product step is to put it in front of developers who run agents across machines, watch
+where setup and trust break down, and decide from that evidence whether the product solves a
+frequent enough problem.</p>
+
+<p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
+</main>
+</div>
+</body>
+</html>
