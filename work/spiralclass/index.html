@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpiralClass · Jay Stewart</title>
+<meta name="description" content="Case study: building and running SpiralClass, a scheduling, payments and video platform for independent teachers, shaped by real teacher needs.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jaystewart.co.uk/work/spiralclass/">
+<meta property="og:title" content="SpiralClass · case study">
+<meta property="og:description" content="Product decisions behind a live platform for independent teachers: teacher-owned lesson methods, local payments and reliable class workflows.">
+<meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">Jay Stewart</a><a href="/work/" aria-current="page">Work</a><a href="/contact/">Contact</a></nav>
+<main>
+<h1>SpiralClass</h1>
+<p class="sub"><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></p>
+<p class="lede">A scheduling, payments and video platform for independent teachers. Teachers
+publish a booking page, sell class packages, meet students in the browser and share materials
+afterwards.</p>
+<ul>
+<li><strong>Role:</strong> product, design, engineering and operation, built and run solo with
+AI coding agents under review.</li>
+<li><strong>Status:</strong> live in production with nine real users. A small product, sized for
+correctness and one maintainer rather than scale.</li>
+<li><strong>Stack:</strong> TypeScript, Next.js, Postgres, Stripe Connect, Wise and browser-based
+video.</li>
+</ul>
+
+<h2>Let the teacher own the method</h2>
+<p>An early teacher was developing a structured method for her language school. The existing AI
+lesson writer produced a generic lesson shape, which would leave her reworking drafts to match
+the sequence she already used.</p>
+<p>I treated her method as teacher-owned material, not a curriculum for the platform to publish
+for everyone. Teachers can write reusable lesson templates; the AI composer can use a selected
+template as its section structure, then adapt the content to the student's level and goals.</p>
+<p>This used the template editor and generation flow already in the product. The structure is
+optional, so teachers who do not use templates keep the existing generation path. It also keeps
+the feature useful beyond language teaching: each teacher supplies their own method.</p>
+
+<h2>Make payments fit the teacher's country</h2>
+<p>The first card-payment design collected a student's money on the platform and transferred it
+to the teacher. That depended on Stripe's cross-border payout rules and excluded the launch
+market. It also put the platform in the middle of disputes and made the buyer's available payment
+methods depend on the platform's country.</p>
+<p>I changed the funds flow: Stripe charges on the teacher's own connected account, and pays her
+locally. The platform does not hold or forward that money. Wise remains a separate option for
+teachers outside Stripe's measured coverage.</p>
+<p>Testing a real teacher's checkout surfaced a less obvious issue. Her account reported its local
+payment capabilities as active, but checkout still offered cards only. The connected account had
+inherited a parent payment-method configuration where local methods were off. I traced the gap
+to the Stripe dashboard configuration, enabled the methods there, and verified that OXXO and SPEI
+appeared in checkout. A green capability flag alone had not proved the buyer's experience.</p>
+
+<h2>Build for the full class lifecycle</h2>
+<p>The product connects the work teachers otherwise split across tools: availability and booking,
+package balances, payment reconciliation, browser video, homework and materials. That makes
+correctness at the boundaries matter. A cancelled class has to restore or forfeit the right
+credit; a payment has to reconcile to the right student and package; a student should only see
+their own teacher's content.</p>
+<p>I kept those rules in domain modules with integration coverage against a real database, and
+recorded product and architecture decisions as they changed. The repository contains more than
+125 decision records, including reversals that explain what new evidence changed the earlier
+choice.</p>
+
+<h2>What the evidence says so far</h2>
+<p>SpiralClass is live with nine real users, and I operate it as its only maintainer. That is
+evidence of a running product and real workflows, not evidence of scale. I do not have enough
+payment or feature-usage data to claim that the checkout changes improved conversion or that the
+template composer is widely used. The next decisions should follow what teachers and students
+actually use and where their work still gets stuck.</p>
+
+<p><a href="/work/">← All work</a> · <a href="/contact/">Contact</a></p>
+</main>
+</div>
+</body>
+</html>
