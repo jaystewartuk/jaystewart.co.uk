@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://jaystewart.co.uk/work/beckon/">
 <meta property="og:title" content="Beckon · case study">
 <meta property="og:description" content="From a recurring developer pain to a remote inbox for terminal agents, designed around secure responses and run in production on one hardened VM.">
-<meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta property="og:image" content="https://jaystewart.co.uk/og/beckon.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,11 +38,11 @@
 <p class="lede">A remote inbox for terminal agents and long-running jobs. Beckon lets you see when a process needs attention and respond from a paired device.</p>
 <dl class="meta">
 <div><dt>Role</dt><dd>Product discovery, specification, design, engineering and operations</dd></div>
-<div><dt>Status</dt><dd><span class="chip live">Live</span> Since October 2026; no outside users yet</dd></div>
+<div><dt>Status</dt><dd><span class="chip live">Live</span> Since October 2026, with Stripe billing; no outside users yet</dd></div>
 <div><dt>Product</dt><dd>A Go CLI that wraps terminal programs, a live web inbox and an installable phone app with notifications</dd></div>
 <div><dt>Links</dt><dd><a href="https://beckoncli.com">beckoncli.com</a> · <a href="https://github.com/jaystewartuk/beckon">Source on GitHub</a> (AGPL server, MIT helper)</dd></div>
 </dl>
-<figure class="hero-shot"><img src="/img/beckon.webp" width="1600" height="1000" alt="Beckon landing page: your terminal jobs, on your phone" decoding="async" fetchpriority="high"></figure>
+<figure class="hero-shot"><img src="/img/beckon.webp" width="1600" height="1000" alt="Beckon landing page: your agent is waiting, answer from your phone, beside a phone showing claude-code blocked on a permission prompt with Approve and Deny" decoding="async" fetchpriority="high"></figure>
 <article class="prose">
 <h2>Finding the problem</h2>
 <p>I reviewed the Hacker News front page and its discussion threads for needs that appeared
@@ -100,7 +100,9 @@ server's own key cannot delete. I rehearsed a restore before launch.</li>
 five-minute check of disk, memory and containers on the server. That check is a dead man's
 switch: if it stops reporting, I get an alert.</li>
 </ul>
-<p>Payments still run in Stripe's test mode, and the repository is about to go public.</p>
+<p>Billing is live through Stripe: a free plan, and Pro at $8 a month. The code is public (AGPL
+server, MIT helper), and the server is packaged for self-hosting: one Linux VM with Docker Compose,
+with scripts for deploys and encrypted backups.</p>
 
 <h2>What remains to learn</h2>
 <p>Beckon is live, but no developers outside my own machines use it yet, so there are no
