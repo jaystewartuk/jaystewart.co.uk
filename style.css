@@ -187,6 +187,11 @@ li::marker { color: var(--faint); }
 .wide-page .project .body { padding: 1.5rem 1.75rem 1.75rem; }
 .wide-page .project .body > p:not(.sub) { max-width: 44rem; }
 .project .shot picture { display: contents; }
+/* Text pages and case studies share the wide frame; text keeps a reading width, media spans the frame. */
+.case main .wrap > *, .case .prose > *, .text main .wrap > * { max-width: 44rem; }
+.case main .wrap > .hero-shot, .case main .wrap > .prose, .case .prose > .inline-shot, .case main .wrap > .next { max-width: none; }
+.case .hero-shot.media, .case .inline-shot { width: auto; left: 0; transform: none; }
+
 @media (max-width: 640px) { .project .shot, .inline-shot .media.has-phone { aspect-ratio: 4 / 5; } }
 .media picture { display: contents; }
 .jump-bar { position: sticky; top: 0; z-index: 5; margin: 0.5rem 0 0; padding: 0.7rem 0; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
