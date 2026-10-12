@@ -34,61 +34,35 @@
 <p class="crumb"><a href="/work/">← Work</a></p>
 <p class="eyebrow">Case study</p>
 <h1 style="view-transition-name: title-spiralclass">SpiralClass</h1>
-<p class="lede">A scheduling, payments and video platform for independent teachers. Teachers publish a booking page, sell class packages, meet students in the browser and share materials afterwards.</p>
+<p class="lede">Booking, class packages, payments and video for independent teachers. Built and run solo.</p>
 <figure style="view-transition-name: media-spiralclass" class="hero-shot media"><video class="loop" muted loop playsinline preload="metadata" width="1600" height="1000" poster="/media/spiralclass/poster.webp" data-phone="spiralclass" data-phone-label="On a phone, a student fills in her details, picks a 4:00 PM time slot, pays, and sees a confirmation with her first class (demo data)." aria-label="A student books and pays for a class on her phone, and the class appears on the teacher’s schedule (demo data)."><source src="/media/spiralclass/loop.webm" type="video/webm"><source src="/media/spiralclass/loop.mp4" type="video/mp4"></video></figure>
 <dl class="meta">
-<div><dt>Role</dt><dd>Product, design, engineering and operation, solo, with coding agents under review</dd></div>
-<div><dt>Status</dt><dd><span class="chip live">Live</span> One teacher and her eight students; real payments</dd></div>
+<div><dt>Role</dt><dd>Everything, solo, with coding agents under review</dd></div>
+<div><dt>Status</dt><dd><span class="chip live">Live</span> One teacher, eight students, real payments</dd></div>
 <div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, self-hosted LiveKit video</dd></div>
 <div><dt>Links</dt><dd><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></dd></div>
 </dl>
 <article class="prose">
-<h2>Let the teacher own the method</h2>
-<p>An early teacher was developing a structured method for her language school. The existing AI
-lesson writer produced a generic lesson shape, which would leave her reworking drafts to match
-the sequence she already used.</p>
-<p>I treated her method as teacher-owned material, not a curriculum for the platform to publish
-for everyone. Teachers can write reusable lesson templates; the AI composer can use a selected
-template as its section structure, then adapt the content to the student's level and goals.</p>
-<p>This used the template editor and generation flow already in the product. The structure is
-optional, so teachers who do not use templates keep the existing generation path. It also keeps
-the feature useful beyond language teaching: each teacher supplies their own method.</p>
+<h2>Payments that skip the platform</h2>
+<p>The first design collected money on the platform and passed it on. That broke payouts in the launch market and put the platform in the middle of disputes.</p>
+<p>Now Stripe charges on the teacher's own account and pays her locally. Wise covers teachers outside Stripe.</p>
+<figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-student-flow-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-student-flow.webp" srcset="/media/spiralclass/still-student-flow-800.webp 800w, /media/spiralclass/still-student-flow.webp 1600w" sizes="70rem" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></picture></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
+<p>One catch: a live checkout showed cards only, though the account said local methods were on. It had inherited a dashboard setting. I fixed it and checked OXXO and SPEI in a real checkout. A green flag isn't proof.</p>
 
-<h2>Make payments fit the teacher's country</h2>
-<p>The first card-payment design collected a student's money on the platform and transferred it
-to the teacher. That depended on Stripe's cross-border payout rules and excluded the launch
-market. It also put the platform in the middle of disputes and made the buyer's available payment
-methods depend on the platform's country.</p>
-<p>I changed the funds flow: Stripe charges on the teacher's own connected account, and pays her
-locally. The platform does not hold or forward that money. Wise remains a separate option for
-teachers outside Stripe's measured coverage.</p>
-<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-student-flow.webp" srcset="/media/spiralclass/still-student-flow-800.webp 800w, /media/spiralclass/still-student-flow.webp 1600w" sizes="(max-width: 44rem) 100vw, 70rem" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
-<p>Testing a real teacher's checkout surfaced a less obvious issue. Her account reported its local
-payment capabilities as active, but checkout still offered cards only. The connected account had
-inherited a parent payment-method configuration where local methods were off. I traced the gap
-to the Stripe dashboard configuration, enabled the methods there, and verified that OXXO and SPEI
-appeared in checkout. A green capability flag alone had not proved the buyer's experience.</p>
+<h2>The teacher owns the method</h2>
+<p>One teacher had her own lesson structure; the AI lesson writer ignored it. Now teachers save templates, and the AI fills the chosen one for each student's level and goals. Optional, and it works for any subject.</p>
 
-<h2>Build for the full class lifecycle</h2>
-<p>The product connects the work teachers otherwise split across tools: availability and booking,
-package balances, payment reconciliation, browser video, homework and materials. That makes
-correctness at the boundaries matter. A cancelled class has to restore or forfeit the right
-credit; a payment has to reconcile to the right student and package; a student should only see
-their own teacher's content.</p>
-<p>I kept those rules in domain modules with integration coverage against a real database, and
-recorded product and architecture decisions as they changed. The repository contains 146
-decision records, including reversals that explain what new evidence changed the earlier
-choice.</p>
+<h2>Rules where they matter</h2>
+<ul>
+<li>A cancelled class restores or forfeits the right credit.</li>
+<li>Each payment reconciles to the right student and package.</li>
+<li>Students see only their own teacher's content.</li>
+</ul>
+<p>These live in domain modules tested against a real database. 146 decision records say why, reversals included.</p>
+<figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-calendar-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-calendar.webp" srcset="/media/spiralclass/still-calendar-800.webp 800w, /media/spiralclass/still-calendar.webp 1600w" sizes="70rem" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></picture></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
 
-<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-calendar.webp" srcset="/media/spiralclass/still-calendar-800.webp 800w, /media/spiralclass/still-calendar.webp 1600w" sizes="(max-width: 44rem) 100vw, 70rem" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
-
-<h2>What the evidence says so far</h2>
-<p>SpiralClass is live with one teacher and her eight students, real payments have gone
-through it, and I operate it as its only maintainer. That is
-evidence of a running product and real workflows, not evidence of scale. I do not have enough
-payment or feature-usage data to claim that the checkout changes improved conversion or that the
-template composer is widely used. The next decisions should follow what teachers and students
-actually use and where their work still gets stuck.</p>
+<h2>What's proven</h2>
+<p>A running product with real payments: one teacher, eight students. Not scale yet, and no proof yet that the checkout changes lift conversion.</p>
 <figure class="quote">
 <blockquote><p>He listens carefully, understands my needs, and responds to feedback with impressive speed and
 precision. He also brings a great deal of creativity and initiative to the table, often suggesting

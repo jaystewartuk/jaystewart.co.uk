@@ -33,7 +33,7 @@
 <div class="wrap">
 <p class="status"><span class="dot" aria-hidden="true"></span>Available now for remote contract work</p>
 <h1>Three products shipped since March. A fourth on the way.</h1>
-<p class="lede">Each one started from evidence, usually what real users said or did. Each was built mostly by coding agents, and went through the same gate before it shipped: tests, review, and a check in a real browser. <strong>Two are open source</strong>, so you can check all of that yourself.</p>
+<p class="lede">Each started from what real users said or did. Agents wrote most of the code; nothing shipped without tests, review and a check in a real browser. <strong>Two are open source.</strong></p>
 </div>
 
 <div class="jump-bar">
@@ -61,13 +61,13 @@
 </figure>
 <div class="detail">
 <dl class="beats">
-<div><dt>Why</dt><dd>Teachers split their work across a calendar, payment links, a video app and chat. SpiralClass connects booking, class packages, payment, the class itself and the materials afterwards.</dd></div>
-<div><dt>Hard part</dt><dd>Money that never passes through the platform. Charges land on the teacher's own Stripe account and pay out locally; Wise covers teachers Stripe doesn't. When a live checkout offered cards only, I traced it to a dashboard setting and checked the local methods in a real checkout.</dd></div>
-<div><dt>Now</dt><dd>Live with one teacher and her eight students, taking real payments. Built and run solo.</dd></div>
+<div><dt>Why</dt><dd>Teachers juggle a calendar, payment links, a video app and chat. This puts it all in one place.</dd></div>
+<div><dt>Hard part</dt><dd>Money never touches the platform: it lands in the teacher's own Stripe account. Wise covers countries Stripe doesn't.</dd></div>
+<div><dt>Now</dt><dd>Live with one teacher and eight students, taking real payments. Built and run solo.</dd></div>
 </dl>
 <ul class="stats">
-<li><b>9,351</b><span>unit tests, run the same way locally and in CI</span></li>
-<li><b>146</b><span>decision records, reversals included</span></li>
+<li><b>9,351</b><span>unit tests</span></li>
+<li><b>146</b><span>decision records</span></li>
 </ul>
 <ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>Stripe Connect</li><li>Wise</li><li>LiveKit</li></ul>
 <p class="links"><a class="more" href="/work/spiralclass/">Case study →</a><a href="https://spiralclass.com/demo">Live demo</a><a href="https://github.com/jaystewartuk/spiralclass">Source</a></p>
@@ -88,13 +88,13 @@
 </figure>
 <div class="detail">
 <dl class="beats">
-<div><dt>Why</dt><dd>Before writing code I read 2,800 messages from a hostel's guest WhatsApp group. Hosts posted the same outing several times a day and guests kept asking "where are you?". So I built for the hosts, not the guests.</dd></div>
-<div><dt>Hard part</dt><dd>Fitting how hosts already work. The week's rota arrived as a photo of the reception chalkboard, so the week view takes exactly those lines. An AI writer drafts each post in English and Spanish, and code checks its times, place and price before a host sees it.</dd></div>
-<div><dt>Now</dt><dd>In a one-week pilot at that hostel. The results, good or bad, go on the case study when it ends.</dd></div>
+<div><dt>Why</dt><dd>I read 2,800 messages from a hostel's WhatsApp group first. Hosts posted the same outing all day, so I built for hosts, not guests.</dd></div>
+<div><dt>Hard part</dt><dd>Fitting how hosts already work. AI drafts each post in English and Spanish; code checks the times, place and price.</dd></div>
+<div><dt>Now</dt><dd>One-week pilot at that hostel. Results, good or bad, go on the case study.</dd></div>
 </dl>
 <ul class="stats">
-<li><b>3 days</b><span>from research to a live pilot</span></li>
-<li><b>50 / 50</b><span>AI drafts pass every check, at about $0.0003 each</span></li>
+<li><b>3 days</b><span>from research to live pilot</span></li>
+<li><b>50 / 50</b><span>AI drafts pass every check, at ~$0.0003 each</span></li>
 </ul>
 <ul class="tags" aria-label="Stack"><li>Cloudflare Workers</li><li>D1</li><li>PostHog</li><li>Claude Haiku</li></ul>
 <p class="links"><a class="more" href="/work/wanttojoin/">Case study →</a><a href="https://wanttojoin.com">wanttojoin.com</a></p>
@@ -115,12 +115,12 @@
 </figure>
 <div class="detail">
 <dl class="beats">
-<div><dt>Why</dt><dd>Four Hacker News threads described the same gap: agents and long jobs stop to ask a question while nobody is watching the terminal.</dd></div>
-<div><dt>Hard part</dt><dd>Making one tap safe. Content is end-to-end encrypted, devices pair with a six-word safety code, and the phone sends a signed choice, never keystrokes. The server can't read a prompt or forge an answer.</dd></div>
-<div><dt>Now</dt><dd>Live with Stripe billing, and self-hostable on one VM. No outside users yet; that's the next test.</dd></div>
+<div><dt>Why</dt><dd>Agents stop to ask a question while nobody's watching the terminal.</dd></div>
+<div><dt>Hard part</dt><dd>Making one tap safe. End-to-end encrypted, and the phone sends a signed choice, never keystrokes.</dd></div>
+<div><dt>Now</dt><dd>Live with billing, and self-hostable. No outside users yet.</dd></div>
 </dl>
 <ul class="stats">
-<li><b>~20 s</b><span>to roll production back</span></li>
+<li><b>~20 s</b><span>to roll back production</span></li>
 <li><b>Go + TS</b><span>AGPL server, MIT helper</span></li>
 </ul>
 <ul class="tags" aria-label="Stack"><li>Go</li><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>WebSockets</li><li>Web Push</li></ul>
@@ -142,13 +142,13 @@
 </figure>
 <div class="detail">
 <dl class="beats">
-<div><dt>Why</dt><dd>Vendors change pricing, free tiers and licences in a blog post nobody reads. Dependency scanners cover packages, not the hosted services and tools a small team actually depends on.</dd></div>
-<div><dt>Hard part</dt><dd>Notes you can trust. Claude writes each one, saying who is affected, by when, and the ways out. It only publishes if its quote appears word for word in the saved vendor page; anything else waits for a person.</dd></div>
-<div><dt>Now</dt><dd>Live at stackquake.com, watching 222 sources across 59 services, with its first notes published. No users yet.</dd></div>
+<div><dt>Why</dt><dd>Vendors change pricing and licences in posts nobody reads. Dependency scanners miss hosted services.</dd></div>
+<div><dt>Hard part</dt><dd>Notes you can trust. Claude writes them, but a note only publishes if its quote is word for word in the vendor's page.</dd></div>
+<div><dt>Now</dt><dd>Live, watching 222 sources across 59 services. No users yet.</dd></div>
 </dl>
 <ul class="stats">
-<li><b>6 / 6</b><span>changes caught in the latest eval, with no false alerts on 7 routine posts</span></li>
-<li><b>222</b><span>pricing pages, feeds and registries watched</span></li>
+<li><b>6 / 6</b><span>changes caught in the last eval, no false alarms</span></li>
+<li><b>222</b><span>sources watched</span></li>
 </ul>
 <ul class="tags" aria-label="Stack"><li>Cloudflare Workers</li><li>D1</li><li>TypeScript</li><li>Claude Haiku</li><li>Claude Opus</li></ul>
 <p class="links"><a href="https://stackquake.com">stackquake.com</a><a href="https://stackquake.com/events">Published notes</a></p>
@@ -160,27 +160,27 @@
 <section class="together" id="build-with-me" aria-labelledby="bwm-title">
 <p class="eyebrow">Build with me</p>
 <h2 id="bwm-title">The code is open. Pull up a chair.</h2>
-<p class="lede">Beckon and SpiralClass are public, with contributor guides, CI that runs the same checks you run locally, and issues written as plain problems rather than tickets.</p>
+<p class="lede">Beckon and SpiralClass are public, with contributor guides and issues written as plain problems.</p>
 <div class="repos">
 <a class="repo" href="https://github.com/jaystewartuk/beckon/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22%2C%22help%20wanted%22">
 <span class="repo-name">jaystewartuk/beckon</span>
-<span class="repo-desc">Go helper, Next.js service, installable web app. Start with a good first issue, or help with signed releases and self-hosting.</span>
+<span class="repo-desc">Go helper, Next.js service, web app. Good first issues waiting.</span>
 <span class="repo-meta"><span>Go</span><span>TypeScript</span><span>AGPL / MIT</span><span class="go">Open issues →</span></span>
 </a>
 <a class="repo" href="https://github.com/jaystewartuk/spiralclass/issues">
 <span class="repo-name">jaystewartuk/spiralclass</span>
-<span class="repo-desc">A real product with real payments. 146 decision records explain why things are the way they are, including the calls I reversed.</span>
+<span class="repo-desc">A real product with real payments. 146 decision records explain why.</span>
 <span class="repo-meta"><span>TypeScript</span><span>Next.js</span><span>AGPL</span><span class="go">Open issues →</span></span>
 </a>
 </div>
 <div class="callout new">
-<p><strong>Got a problem you know better than anyone?</strong> I'm also open to building something new with the right person: someone who lives with a problem, or who can reach the people who have it. Building is the cheap part now. <a href="mailto:jay@jaystewart.co.uk?subject=Building%20something">Tell me what you've seen.</a></p>
+<p><strong>Know a problem better than anyone?</strong> I'm open to building something new with the right person. <a href="mailto:jay@jaystewart.co.uk?subject=Building%20something">Tell me what you've seen.</a></p>
 </div>
 </section>
 
 <section class="cta">
 <h2>Need a first version, or a second pair of hands?</h2>
-<p>Email me what you're building and what you need first. Within a working day I'll reply with whether it fits and what the first two weeks could look like.</p>
+<p>Email what you're building and what you need first. I'll reply within a working day.</p>
 <div class="actions"><a class="btn primary" href="mailto:jay@jaystewart.co.uk?subject=Contract%20work">Email jay@jaystewart.co.uk</a><a class="btn" href="/working-with-me/">How an engagement works</a></div>
 </section>
 </div>

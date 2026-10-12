@@ -20,7 +20,7 @@
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body class="wide-page">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap">
@@ -32,61 +32,43 @@
 <div class="wrap">
 <p class="status"><span class="dot" aria-hidden="true"></span>Available now for remote contract work</p>
 <h1>I find out what users need, then ship it with coding agents.</h1>
-<p class="lede">I'm <strong>Jay Stewart</strong>, a product engineer. I work across the whole product: talking to users, design, code, payments and running it in production. I'm looking for contract work with early-stage startups.</p>
+<p class="lede">I'm <strong>Jay Stewart</strong>, a product engineer: users, design, code, payments and production. Looking for contract work with early-stage startups.</p>
 <div class="actions">
 <a class="btn primary" href="mailto:jay@jaystewart.co.uk?subject=Contract%20work">Email me</a>
 <a class="btn" href="/working-with-me/">How I work with clients</a>
 <a class="btn" href="/Jay-Stewart-CV.pdf">CV (PDF)</a>
 </div>
-<p class="fineprint">UK citizen, UK-registered sole trader. Overlaps UK afternoons and US working hours.</p>
+<p class="fineprint">UK sole trader. Overlaps UK afternoons and US hours.</p>
 
 <div class="facts">
 <div><b>3</b><span>products shipped since March 2026</span></div>
-<div><b>2</b><span>live in production, one taking real payments</span></div>
-<div><b>8 years</b><span>of e-commerce backends before, including Dyson's store</span></div>
+<div><b>2</b><span>live, one taking real payments</span></div>
+<div><b>8 years</b><span>of e-commerce backends, including Dyson's store</span></div>
 </div>
 
-<h2 class="section-title">Selected work</h2>
+<h2 class="section-title">Selected work · <a href="/work/">all four →</a></h2>
 <div class="projects">
 <article class="project">
-<a class="shot" style="view-transition-name: media-spiralclass" href="/work/spiralclass/" tabindex="-1" aria-hidden="true"><img src="/media/spiralclass/poster.webp" srcset="/media/spiralclass/poster-800.webp 800w, /media/spiralclass/poster.webp 1600w" sizes="(max-width: 44rem) 100vw, 44rem" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
+<a class="shot" style="view-transition-name: media-spiralclass" href="/work/spiralclass/" tabindex="-1" aria-hidden="true"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/poster-phone.webp" width="720" height="900"><img src="/media/spiralclass/poster.webp" srcset="/media/spiralclass/poster-800.webp 800w, /media/spiralclass/poster.webp 1600w" sizes="(max-width: 640px) 100vw, 70rem" width="1600" height="1000" alt="" loading="lazy" decoding="async"></picture></a>
 <div class="body">
 <div class="project-head"><h3 style="view-transition-name: title-spiralclass"><a href="/work/spiralclass/">SpiralClass</a></h3><span class="chip live">Live · real payments</span></div>
-<p>Scheduling, payments and video for independent teachers. Built and run solo; in production with a teacher and her eight students.</p>
-<ul>
-<li>Stripe Connect direct charges on the teacher's own account, so the platform never holds the money. Wise as a second rail, reconciled through its API.</li>
-<li>9,351 unit tests and one definition of green, run the same way locally and in CI, plus real-database integration tests and a migration drift check.</li>
-<li>146 decision records, several of them reversing an earlier call and saying why.</li>
-</ul>
-<ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>Prisma</li><li>Stripe Connect</li><li>Wise</li><li>LiveKit</li><li>Inngest</li></ul>
+<p>Booking, payments and video for independent teachers. Live with real payments; built and run solo.</p>
 <p class="sub"><a class="more" href="/work/spiralclass/">Read the case study →</a> · <a href="https://spiralclass.com/demo">Live demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">Source</a></p>
 </div>
 </article>
 <article class="project">
-<a class="shot" style="view-transition-name: media-wanttojoin" href="/work/wanttojoin/" tabindex="-1" aria-hidden="true"><img src="/media/wanttojoin/poster.webp" srcset="/media/wanttojoin/poster-800.webp 800w, /media/wanttojoin/poster.webp 1600w" sizes="(max-width: 44rem) 100vw, 44rem" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
+<a class="shot" style="view-transition-name: media-wanttojoin" href="/work/wanttojoin/" tabindex="-1" aria-hidden="true"><picture><source media="(max-width: 640px)" srcset="/media/wanttojoin/poster-phone.webp" width="720" height="900"><img src="/media/wanttojoin/poster.webp" srcset="/media/wanttojoin/poster-800.webp 800w, /media/wanttojoin/poster.webp 1600w" sizes="(max-width: 640px) 100vw, 70rem" width="1600" height="1000" alt="" loading="lazy" decoding="async"></picture></a>
 <div class="body">
 <div class="project-head"><h3 style="view-transition-name: title-wanttojoin"><a href="/work/wanttojoin/">WantToJoin</a></h3><span class="chip pilot">Pilot · one hostel</span></div>
-<p>A page per hostel for tonight's outings and who's going. Before writing code I read 2,800 messages from a hostel's guest WhatsApp group. They showed that the hosts, not the guests, were the people to build for.</p>
-<ul>
-<li>From research to a live pilot at that hostel in three days.</li>
-<li>An AI post writer drafts every post in English and Spanish, checked in code. All 50 eval drafts pass, at about $0.0003 a post.</li>
-<li>Pilot results, good or bad, published after it ends on 14 October.</li>
-</ul>
-<ul class="tags" aria-label="Stack"><li>Cloudflare Workers</li><li>D1</li><li>PostHog</li><li>Claude Haiku</li></ul>
+<p>Tonight's hostel outings, and who's going, on one link. From 2,800 WhatsApp messages to a live pilot in three days.</p>
 <p class="sub"><a class="more" href="/work/wanttojoin/">Read the case study →</a> · <a href="https://wanttojoin.com">wanttojoin.com</a></p>
 </div>
 </article>
 <article class="project">
-<a class="shot" style="view-transition-name: media-beckon" href="/work/beckon/" tabindex="-1" aria-hidden="true"><img src="/media/beckon/poster.webp" srcset="/media/beckon/poster-800.webp 800w, /media/beckon/poster.webp 1600w" sizes="(max-width: 44rem) 100vw, 44rem" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
+<a class="shot" style="view-transition-name: media-beckon" href="/work/beckon/" tabindex="-1" aria-hidden="true"><picture><source media="(max-width: 640px)" srcset="/media/beckon/poster-phone.webp" width="720" height="900"><img src="/media/beckon/poster.webp" srcset="/media/beckon/poster-800.webp 800w, /media/beckon/poster.webp 1600w" sizes="(max-width: 640px) 100vw, 70rem" width="1600" height="1000" alt="" loading="lazy" decoding="async"></picture></a>
 <div class="body">
 <div class="project-head"><h3 style="view-transition-name: title-beckon"><a href="/work/beckon/">Beckon</a></h3><span class="chip live">Live · October 2026</span></div>
-<p>A remote inbox for terminal agents. Your phone tells you when Claude Code or a build is waiting, and you approve or deny from the lock screen.</p>
-<ul>
-<li>End-to-end encrypted. The helper only types a response signed by a device you paired with a six-word safety code.</li>
-<li>A Go helper, a Next.js and WebSocket service, and an installable web app with push notifications.</li>
-<li>Runs on one hardened VM with monitoring, a dead man's switch and tested, encrypted offsite backups. Stripe billing is live; no outside users yet.</li>
-</ul>
-<ul class="tags" aria-label="Stack"><li>Go</li><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>WebSockets</li><li>Web Push</li></ul>
+<p>Your coding agent is waiting; answer it from your phone. End-to-end encrypted, open source.</p>
 <p class="sub"><a class="more" href="/work/beckon/">Read the case study →</a> · <a href="https://beckoncli.com">beckoncli.com</a> · <a href="https://github.com/jaystewartuk/beckon">Source</a></p>
 </div>
 </article>
@@ -94,24 +76,24 @@
 
 <h2 class="section-title">How I work</h2>
 <ol class="principles">
-<li><strong>Start with users.</strong><span>I talk to them, read what they actually say, and change the plan when the evidence points somewhere else.</span></li>
-<li><strong>Experiments have a stopping rule.</strong><span>The hypothesis, what to measure and when to stop are written down before any code.</span></li>
-<li><strong>I own what the agents write.</strong><span>I build with coding agents, and every change goes through a pull request, tests and a check in a real browser.</span></li>
+<li><strong>Start with users.</strong><span>Read what they actually say. Change the plan when the evidence does.</span></li>
+<li><strong>Write down when to stop.</strong><span>Hypothesis, measure and stopping rule before any code.</span></li>
+<li><strong>I own what the agents write.</strong><span>Every change gets a pull request, tests and a real-browser check.</span></li>
 </ol>
 
 <h2 class="section-title">Before this</h2>
 <ol class="timeline">
-<li><time>2026 – now</time><div><b>Independent product engineer</b><span>SpiralClass, WantToJoin and Beckon, built largely with coding agents.</span></div></li>
-<li><time>2020 – 2026</time><div><b>Career break</b><span>A planned six-year break, travelling on savings. Back in March 2026 because coding agents changed what one person can ship.</span></div></li>
-<li><time>2017 – 2020</time><div><b>G&amp;V | Venture Brands Agency</b><span>Contract backend engineer on high-traffic e-commerce, including Dyson's store.</span></div></li>
-<li><time>2016 – 2020</time><div><b>Thrive Chiropractic</b><span>Designed, built and ran a booking and payment platform for nearly four years.</span></div></li>
+<li><time>2026 – now</time><div><b>Independent product engineer</b><span>SpiralClass, WantToJoin, Beckon; building Stackquake.</span></div></li>
+<li><time>2020 – 2026</time><div><b>Career break</b><span>Six years travelling. Back because coding agents changed what one person can ship.</span></div></li>
+<li><time>2017 – 2020</time><div><b>G&amp;V | Venture Brands Agency</b><span>Contract backend engineer on high-traffic e-commerce, including Dyson.</span></div></li>
+<li><time>2016 – 2020</time><div><b>Thrive Chiropractic</b><span>Built and ran their booking and payments platform.</span></div></li>
 <li><time>2014 – 2016</time><div><b>Folk Digital</b><span>Backend features and integrations for e-commerce clients.</span></div></li>
-<li><time>2012 – 2014</time><div><b>C3 Media</b><span>From junior PHP developer to building full e-commerce systems on my own.</span></div></li>
+<li><time>2012 – 2014</time><div><b>C3 Media</b><span>Junior PHP developer to building whole e-commerce systems.</span></div></li>
 </ol>
 
 <section class="cta">
 <h2>Need a first version, or a second pair of hands?</h2>
-<p>Email me what you're building and what you need first. Within a working day I'll reply with whether it fits and what the first two weeks could look like.</p>
+<p>Email what you're building and what you need first. I'll reply within a working day.</p>
 <div class="actions"><a class="btn primary" href="mailto:jay@jaystewart.co.uk?subject=Contract%20work">Email jay@jaystewart.co.uk</a><a class="btn" href="/working-with-me/">How an engagement works</a></div>
 </section>
 </div>

@@ -182,6 +182,13 @@ li::marker { color: var(--faint); }
 .wide-page h1 { max-width: 15em; }
 .wide-page .lede { max-width: 42rem; }
 .wide-page .cta p { max-width: 42rem; }
+.wide-page .principles, .wide-page .timeline { max-width: 48rem; }
+.wide-page .projects { gap: 2.5rem; }
+.wide-page .project .body { padding: 1.5rem 1.75rem 1.75rem; }
+.wide-page .project .body > p:not(.sub) { max-width: 44rem; }
+.project .shot picture { display: contents; }
+@media (max-width: 640px) { .project .shot, .inline-shot .media.has-phone { aspect-ratio: 4 / 5; } }
+.media picture { display: contents; }
 .jump-bar { position: sticky; top: 0; z-index: 5; margin: 0.5rem 0 0; padding: 0.7rem 0; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(14px); backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
 .jump-bar.stuck { border-bottom-color: var(--rule); }
 .jump { display: flex; gap: 0.4rem; margin: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent); mask-image: linear-gradient(90deg, #000 92%, transparent); }
