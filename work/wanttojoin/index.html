@@ -17,9 +17,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <script src="/loops.js" defer></script>
 </head>
@@ -80,7 +78,7 @@ payments and nothing for guests to create. Reminders on the hosts' phones waited
 said they'd be useful, and then followed the times the hosts already post at.</li>
 </ul>
 
-<figure class="inline-shot"><div class="media"><img src="/media/wanttojoin/still-live-pin.webp" width="1600" height="1000" alt="The host's phone saving a meeting pin, and the guest's phone showing 'Group is now at Salón Alcalá' above tonight's outing." loading="lazy" decoding="async"></div><figcaption>The live pin: the host drops it, and every guest's page says where the group is now. Demo hostel and guests.</figcaption></figure>
+<figure class="inline-shot"><div class="media"><img src="/media/wanttojoin/still-live-pin.webp" srcset="/media/wanttojoin/still-live-pin-800.webp 800w, /media/wanttojoin/still-live-pin.webp 1600w" sizes="(max-width: 44rem) 100vw, 70rem" width="1600" height="1000" alt="The host's phone saving a meeting pin, and the guest's phone showing 'Group is now at Salón Alcalá' above tonight's outing." loading="lazy" decoding="async"></div><figcaption>The live pin: the host drops it, and every guest's page says where the group is now. Demo hostel and guests.</figcaption></figure>
 
 <h2>Adding AI where the cost was real</h2>
 <p>Hosts write every post twice, in English and Spanish. "Write it for me" drafts both from the
@@ -102,7 +100,7 @@ up a model-graded check, and score a prompt change against this baseline. Every 
 with whether the host kept or edited it, so real use becomes the next eval set.</li>
 </ul>
 
-<figure class="inline-shot"><div class="media"><img src="/media/wanttojoin/still-write-it-for-me.webp" width="1600" height="1000" alt="A host's phone with a bilingual post in the message box, next to a guest's Spanish phone showing the same outing with only the Spanish half of the message." loading="lazy" decoding="async"></div><figcaption>The host's form with a draft in both languages; guests see only their half. Demo hostel; illustrative draft text.</figcaption></figure>
+<figure class="inline-shot"><div class="media"><img src="/media/wanttojoin/still-write-it-for-me.webp" srcset="/media/wanttojoin/still-write-it-for-me-800.webp 800w, /media/wanttojoin/still-write-it-for-me.webp 1600w" sizes="(max-width: 44rem) 100vw, 70rem" width="1600" height="1000" alt="A host's phone with a bilingual post in the message box, next to a guest's Spanish phone showing the same outing with only the Spanish half of the message." loading="lazy" decoding="async"></div><figcaption>The host's form with a draft in both languages; guests see only their half. Demo hostel; illustrative draft text.</figcaption></figure>
 
 <h2>Results so far</h2>
 <p>The pilot runs for one week, to 14 October, and I'll add the results here as they come

@@ -17,9 +17,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <script src="/loops.js" defer></script>
 </head>
@@ -64,7 +62,7 @@ methods depend on the platform's country.</p>
 <p>I changed the funds flow: Stripe charges on the teacher's own connected account, and pays her
 locally. The platform does not hold or forward that money. Wise remains a separate option for
 teachers outside Stripe's measured coverage.</p>
-<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-student-flow.webp" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
+<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-student-flow.webp" srcset="/media/spiralclass/still-student-flow-800.webp 800w, /media/spiralclass/still-student-flow.webp 1600w" sizes="(max-width: 44rem) 100vw, 70rem" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
 <p>Testing a real teacher's checkout surfaced a less obvious issue. Her account reported its local
 payment capabilities as active, but checkout still offered cards only. The connected account had
 inherited a parent payment-method configuration where local methods were off. I traced the gap
@@ -82,7 +80,7 @@ recorded product and architecture decisions as they changed. The repository cont
 decision records, including reversals that explain what new evidence changed the earlier
 choice.</p>
 
-<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-calendar.webp" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
+<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-calendar.webp" srcset="/media/spiralclass/still-calendar-800.webp 800w, /media/spiralclass/still-calendar.webp 1600w" sizes="(max-width: 44rem) 100vw, 70rem" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
 
 <h2>What the evidence says so far</h2>
 <p>SpiralClass is live with one teacher and her eight students, real payments have gone
