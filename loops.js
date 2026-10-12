@@ -15,8 +15,8 @@
       v.poster = base + "poster-phone.webp";
       v.width = 720; v.height = 900;
       v.replaceChildren(
-        Object.assign(document.createElement("source"), { src: base + "loop-phone.webm", type: "video/webm" }),
-        Object.assign(document.createElement("source"), { src: base + "loop-phone.mp4", type: "video/mp4" }),
+        Object.assign(document.createElement("source"), { src: base + "loop-phone.webm", type: 'video/webm; codecs="vp9"' }),
+        Object.assign(document.createElement("source"), { src: base + "loop-phone.mp4", type: 'video/mp4; codecs="avc1.640032"' }),
       );
       if (v.dataset.phoneLabel) v.setAttribute("aria-label", v.dataset.phoneLabel);
       v.load();
