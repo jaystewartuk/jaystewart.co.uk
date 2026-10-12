@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
+<script src="/loops.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -42,7 +43,7 @@
 <div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, self-hosted LiveKit video</dd></div>
 <div><dt>Links</dt><dd><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></dd></div>
 </dl>
-<figure class="hero-shot"><img src="/img/spiralclass.webp" width="1600" height="1000" alt="SpiralClass teacher dashboard: the week's classes, earnings and booking link (demo data)" decoding="async" fetchpriority="high"></figure>
+<figure class="hero-shot media"><video class="loop" muted loop playsinline preload="metadata" width="1600" height="1000" poster="/media/spiralclass/poster.webp" aria-label="A student books and pays for a class on her phone, and the class appears on the teacher’s schedule (demo data)."><source src="/media/spiralclass/loop.webm" type="video/webm"><source src="/media/spiralclass/loop.mp4" type="video/mp4"></video></figure>
 <article class="prose">
 <h2>Let the teacher own the method</h2>
 <p>An early teacher was developing a structured method for her language school. The existing AI
@@ -63,6 +64,7 @@ methods depend on the platform's country.</p>
 <p>I changed the funds flow: Stripe charges on the teacher's own connected account, and pays her
 locally. The platform does not hold or forward that money. Wise remains a separate option for
 teachers outside Stripe's measured coverage.</p>
+<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-student-flow.webp" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
 <p>Testing a real teacher's checkout surfaced a less obvious issue. Her account reported its local
 payment capabilities as active, but checkout still offered cards only. The connected account had
 inherited a parent payment-method configuration where local methods were off. I traced the gap
@@ -76,9 +78,11 @@ correctness at the boundaries matter. A cancelled class has to restore or forfei
 credit; a payment has to reconcile to the right student and package; a student should only see
 their own teacher's content.</p>
 <p>I kept those rules in domain modules with integration coverage against a real database, and
-recorded product and architecture decisions as they changed. The repository contains nearly
-150 decision records, including reversals that explain what new evidence changed the earlier
+recorded product and architecture decisions as they changed. The repository contains 146
+decision records, including reversals that explain what new evidence changed the earlier
 choice.</p>
+
+<figure class="inline-shot"><div class="media"><img src="/media/spiralclass/still-calendar.webp" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
 
 <h2>What the evidence says so far</h2>
 <p>SpiralClass is live with one teacher and her eight students, real payments have gone
@@ -87,6 +91,13 @@ evidence of a running product and real workflows, not evidence of scale. I do no
 payment or feature-usage data to claim that the checkout changes improved conversion or that the
 template composer is widely used. The next decisions should follow what teachers and students
 actually use and where their work still gets stuck.</p>
+<figure class="quote">
+<blockquote><p>He listens carefully, understands my needs, and responds to feedback with impressive speed and
+precision. He also brings a great deal of creativity and initiative to the table, often suggesting
+features I would never have thought of myself, like the subtitles, which have made a real
+difference to my experience as an online Spanish teacher.</p></blockquote>
+<figcaption>Ana Laura, Spanish teacher on SpiralClass</figcaption>
+</figure>
 </article>
 <nav class="next" aria-label="More">
 <a href="/work/">← All work</a>

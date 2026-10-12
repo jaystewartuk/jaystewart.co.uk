@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
+<script src="/loops.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -42,7 +43,7 @@
 <div><dt>Time</dt><dd>Research to a live pilot in three days</dd></div>
 <div><dt>Stack</dt><dd>Cloudflare Workers and D1, PostHog, Claude Haiku · <a href="https://wanttojoin.com">wanttojoin.com</a></dd></div>
 </dl>
-<figure class="hero-shot"><img src="/img/wanttojoin.webp" width="1600" height="1000" alt="WantToJoin landing page with a phone showing tonight's outing and who's going" decoding="async" fetchpriority="high"></figure>
+<figure class="hero-shot media"><video class="loop" muted loop playsinline preload="metadata" width="1600" height="1000" poster="/media/wanttojoin/poster.webp" aria-label="Two phones showing the same hostel outing: a guest taps I’m in on the English page, the count goes from 2 to 3 and the outing flips to “It’s on”, and the Spanish page updates to match (demo data)."><source src="/media/wanttojoin/loop.webm" type="video/webm"><source src="/media/wanttojoin/loop.mp4" type="video/mp4"></video></figure>
 <article class="prose">
 <h2>The problem</h2>
 <p>Before writing any code I read 2,800 messages from five months of a hostel's guest
@@ -79,6 +80,8 @@ payments and nothing for guests to create. Reminders on the hosts' phones waited
 said they'd be useful, and then followed the times the hosts already post at.</li>
 </ul>
 
+<figure class="inline-shot"><div class="media"><img src="/media/wanttojoin/still-live-pin.webp" width="1600" height="1000" alt="The host's phone saving a meeting pin, and the guest's phone showing 'Group is now at Salón Alcalá' above tonight's outing." loading="lazy" decoding="async"></div><figcaption>The live pin: the host drops it, and every guest's page says where the group is now. Demo hostel and guests.</figcaption></figure>
+
 <h2>Adding AI where the cost was real</h2>
 <p>Hosts write every post twice, in English and Spanish. "Write it for me" drafts both from the
 outing form's facts with Claude Haiku, and the host reads and edits the draft before saving
@@ -98,6 +101,8 @@ or an English title left in the Spanish half. I'll rate drafts by hand, use thos
 up a model-graded check, and score a prompt change against this baseline. Every draft is logged
 with whether the host kept or edited it, so real use becomes the next eval set.</li>
 </ul>
+
+<figure class="inline-shot"><div class="media"><img src="/media/wanttojoin/still-write-it-for-me.webp" width="1600" height="1000" alt="A host's phone with a bilingual post in the message box, next to a guest's Spanish phone showing the same outing with only the Spanish half of the message." loading="lazy" decoding="async"></div><figcaption>The host's form with a draft in both languages; guests see only their half. Demo hostel; illustrative draft text.</figcaption></figure>
 
 <h2>Results so far</h2>
 <p>The pilot runs for one week, to 14 October, and I'll add the results here as they come

@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work · Jay Stewart</title>
-<meta name="description" content="SpiralClass, a teacher platform taking real payments; WantToJoin, a hostel plans page in pilot; and Beckon, an inbox for terminal agents, live since October 2026.">
+<meta name="description" content="Three products shipped since March 2026 and a fourth in progress: SpiralClass, a teacher platform taking real payments; WantToJoin, a hostel pilot built from 2,800 real messages; Beckon, an open-source inbox for terminal agents; and Stackquake.">
 <link rel="canonical" href="https://jaystewart.co.uk/work/">
 <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jaystewart.co.uk/work/">
 <meta property="og:title" content="Work · Jay Stewart">
-<meta property="og:description" content="Three products since March 2026: SpiralClass, WantToJoin and Beckon.">
+<meta property="og:description" content="Three products shipped since March 2026, a fourth on the way, two of them open source.">
 <meta property="og:image" content="https://jaystewart.co.uk/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,8 +21,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
+<script src="/loops.js" defer></script>
 </head>
-<body>
+<body class="wide-page">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap">
@@ -32,53 +33,156 @@
 </header>
 <main id="main">
 <div class="wrap">
-<p class="eyebrow">Work</p>
-<h1>Three products since March 2026.</h1>
-<p class="lede">Each one started from what users actually said or did, and each was built largely with coding agents, with every change checked before it shipped.</p>
-<div class="projects">
-<article class="project">
-<a class="shot" href="/work/spiralclass/" tabindex="-1" aria-hidden="true"><img src="/img/spiralclass.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
-<div class="body">
-<div class="project-head"><h2><a href="/work/spiralclass/">SpiralClass</a></h2><span class="chip live">Live · real payments</span></div>
-<p>Scheduling, payments and video for independent teachers. Built and run solo; in production with a teacher and her eight students.</p>
-<ul>
-<li>Stripe Connect direct charges on the teacher's own account, so the platform never holds the money. Wise as a second rail, reconciled through its API.</li>
-<li>About 870 test files and one definition of green, run the same way locally and in CI, including real-database integration tests and a migration drift check.</li>
-<li>Nearly 150 decision records, several of them reversing an earlier call and saying why.</li>
+<p class="eyebrow">Work · March 2026 to now</p>
+<h1>Three products shipped since March. A fourth on the way.</h1>
+<p class="lede">Each one started from evidence, usually what real users said or did. Each was built mostly by coding agents, and went through the same gate before it shipped: tests, review, and a check in a real browser. <strong>Two are open source</strong>, so you can check all of that yourself.</p>
+<nav class="jump" aria-label="Projects">
+<a href="#spiralclass">SpiralClass</a><a href="#wanttojoin">WantToJoin</a><a href="#beckon">Beckon</a><a href="#stackquake">Stackquake</a><a href="#build-with-me">Build with me</a>
+</nav>
+</div>
+
+<div class="wrap">
+<div class="features">
+
+<article class="feature" id="spiralclass">
+<figure class="media">
+<video class="loop" muted loop playsinline preload="none" width="1600" height="1000" poster="/media/spiralclass/poster.webp" aria-label="A student books and pays for a class on her phone, and the class appears on the teacher’s schedule (demo data).">
+<source src="/media/spiralclass/loop.webm" type="video/webm">
+<source src="/media/spiralclass/loop.mp4" type="video/mp4">
+</video>
+</figure>
+<div class="story">
+<div class="intro">
+<div class="project-head"><span class="chip live">Live · real payments</span></div>
+<h2><a href="/work/spiralclass/">SpiralClass</a></h2>
+<p class="pitch">Booking, payments and video for independent teachers, in one place.</p>
+</div>
+<div class="detail">
+<dl class="beats">
+<div><dt>Why</dt><dd>Teachers split their work across a calendar, payment links, a video app and chat. SpiralClass connects booking, class packages, payment, the class itself and the materials afterwards.</dd></div>
+<div><dt>Hard part</dt><dd>Money that never passes through the platform. Charges land on the teacher's own Stripe account and pay out locally; Wise covers teachers Stripe doesn't. When a live checkout offered cards only, I traced it to a dashboard setting and checked the local methods in a real checkout.</dd></div>
+<div><dt>Now</dt><dd>Live with one teacher and her eight students, taking real payments. Built and run solo.</dd></div>
+</dl>
+<ul class="stats">
+<li><b>9,351</b><span>unit tests, run the same way locally and in CI</span></li>
+<li><b>146</b><span>decision records, reversals included</span></li>
 </ul>
-<ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>Prisma</li><li>Stripe Connect</li><li>Wise</li><li>LiveKit</li><li>Inngest</li></ul>
-<p class="sub"><a class="more" href="/work/spiralclass/">Read the case study →</a> · <a href="https://spiralclass.com/demo">Live demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">Source</a></p>
+<ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>Stripe Connect</li><li>Wise</li><li>LiveKit</li></ul>
+<p class="links"><a class="more" href="/work/spiralclass/">Case study →</a><a href="https://spiralclass.com/demo">Live demo</a><a href="https://github.com/jaystewartuk/spiralclass">Source</a></p>
+</div>
 </div>
 </article>
-<article class="project">
-<a class="shot" href="/work/wanttojoin/" tabindex="-1" aria-hidden="true"><img src="/img/wanttojoin.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
-<div class="body">
-<div class="project-head"><h2><a href="/work/wanttojoin/">WantToJoin</a></h2><span class="chip pilot">Pilot · one hostel</span></div>
-<p>A page per hostel for tonight's outings and who's going. Before writing code I read 2,800 messages from a hostel's guest WhatsApp group. They showed that the hosts, not the guests, were the people to build for.</p>
-<ul>
-<li>From research to a live pilot at that hostel in three days.</li>
-<li>An AI post writer drafts every post in English and Spanish, checked in code. All 50 eval drafts pass, at about $0.0003 a post.</li>
-<li>Pilot results, good or bad, published after it ends on 14 October.</li>
+
+<article class="feature" id="wanttojoin">
+<figure class="media">
+<video class="loop" muted loop playsinline preload="none" width="1600" height="1000" poster="/media/wanttojoin/poster.webp" aria-label="Two phones showing the same hostel outing: a guest taps I’m in on the English page, the count goes from 2 to 3 and the outing flips to “It’s on”, and the Spanish page updates to match (demo data).">
+<source src="/media/wanttojoin/loop.webm" type="video/webm">
+<source src="/media/wanttojoin/loop.mp4" type="video/mp4">
+</video>
+</figure>
+<div class="story">
+<div class="intro">
+<div class="project-head"><span class="chip pilot">Pilot · one hostel, to 14 October</span></div>
+<h2><a href="/work/wanttojoin/">WantToJoin</a></h2>
+<p class="pitch">Tonight's outings at a hostel, and who's going, on one link.</p>
+</div>
+<div class="detail">
+<dl class="beats">
+<div><dt>Why</dt><dd>Before writing code I read 2,800 messages from a hostel's guest WhatsApp group. Hosts posted the same outing several times a day and guests kept asking "where are you?". So I built for the hosts, not the guests.</dd></div>
+<div><dt>Hard part</dt><dd>Fitting how hosts already work. The week's rota arrived as a photo of the reception chalkboard, so the week view takes exactly those lines. An AI writer drafts each post in English and Spanish, and code checks its times, place and price before a host sees it.</dd></div>
+<div><dt>Now</dt><dd>In a one-week pilot at that hostel. The results, good or bad, go on the case study when it ends.</dd></div>
+</dl>
+<ul class="stats">
+<li><b>3 days</b><span>from research to a live pilot</span></li>
+<li><b>50 / 50</b><span>AI drafts pass every check, at about $0.0003 each</span></li>
 </ul>
 <ul class="tags" aria-label="Stack"><li>Cloudflare Workers</li><li>D1</li><li>PostHog</li><li>Claude Haiku</li></ul>
-<p class="sub"><a class="more" href="/work/wanttojoin/">Read the case study →</a> · <a href="https://wanttojoin.com">wanttojoin.com</a></p>
+<p class="links"><a class="more" href="/work/wanttojoin/">Case study →</a><a href="https://wanttojoin.com">wanttojoin.com</a></p>
+</div>
 </div>
 </article>
-<article class="project">
-<a class="shot" href="/work/beckon/" tabindex="-1" aria-hidden="true"><img src="/img/beckon.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></a>
-<div class="body">
-<div class="project-head"><h2><a href="/work/beckon/">Beckon</a></h2><span class="chip live">Live · October 2026</span></div>
-<p>A remote inbox for terminal agents. Your phone tells you when Claude Code or a build is waiting, and you approve or deny from the lock screen.</p>
-<ul>
-<li>End-to-end encrypted. The helper only types a response signed by a device you paired with a six-word safety code.</li>
-<li>A Go helper, a Next.js and WebSocket service, and an installable web app with push notifications.</li>
-<li>Runs on one hardened VM with monitoring, a dead man's switch and tested, encrypted offsite backups. Stripe billing is live; no outside users yet.</li>
+
+<article class="feature" id="beckon">
+<figure class="media dark">
+<video class="loop" muted loop playsinline preload="none" width="1600" height="1000" poster="/media/beckon/poster.webp" aria-label="A coding agent in a terminal stops to ask permission to run a build; on the phone, Beckon shows the request, Approve is tapped, and the terminal carries on to “Done”.">
+<source src="/media/beckon/loop.webm" type="video/webm">
+<source src="/media/beckon/loop.mp4" type="video/mp4">
+</video>
+</figure>
+<div class="story">
+<div class="intro">
+<div class="project-head"><span class="chip live">Live · open source</span></div>
+<h2><a href="/work/beckon/">Beckon</a></h2>
+<p class="pitch">Your coding agent is waiting. Answer it from your phone.</p>
+</div>
+<div class="detail">
+<dl class="beats">
+<div><dt>Why</dt><dd>Four Hacker News threads described the same gap: agents and long jobs stop to ask a question while nobody is watching the terminal.</dd></div>
+<div><dt>Hard part</dt><dd>Making one tap safe. Content is end-to-end encrypted, devices pair with a six-word safety code, and the phone sends a signed choice, never keystrokes. The server can't read a prompt or forge an answer.</dd></div>
+<div><dt>Now</dt><dd>Live with Stripe billing, and self-hostable on one VM. No outside users yet; that's the next test.</dd></div>
+</dl>
+<ul class="stats">
+<li><b>~20 s</b><span>to roll production back</span></li>
+<li><b>Go + TS</b><span>AGPL server, MIT helper</span></li>
 </ul>
 <ul class="tags" aria-label="Stack"><li>Go</li><li>TypeScript</li><li>Next.js</li><li>Postgres</li><li>WebSockets</li><li>Web Push</li></ul>
-<p class="sub"><a class="more" href="/work/beckon/">Read the case study →</a> · <a href="https://beckoncli.com">beckoncli.com</a> · <a href="https://github.com/jaystewartuk/beckon">Source</a></p>
+<p class="links"><a class="more" href="/work/beckon/">Case study →</a><a href="https://beckoncli.com">beckoncli.com</a><a href="https://github.com/jaystewartuk/beckon">Source</a></p>
+</div>
 </div>
 </article>
+
+<article class="feature" id="stackquake">
+<figure class="media">
+<video class="loop" muted loop playsinline preload="none" width="1600" height="1000" poster="/media/stackquake/poster.webp" aria-label="A Stackquake dashboard gains an alert for Deno ending development of its runtime, then opens the note, which leads with a word-for-word quote from deno.com, says who is affected and lists three ways out (demo account).">
+<source src="/media/stackquake/loop.webm" type="video/webm">
+<source src="/media/stackquake/loop.mp4" type="video/mp4">
+</video>
+</figure>
+<div class="story">
+<div class="intro">
+<div class="project-head"><span class="chip building">Building now</span></div>
+<h2><a href="https://stackquake.com">Stackquake</a></h2>
+<p class="pitch">A change radar for the services your product runs on.</p>
 </div>
+<div class="detail">
+<dl class="beats">
+<div><dt>Why</dt><dd>Vendors change pricing, free tiers and licences in a blog post nobody reads. Dependency scanners cover packages, not the hosted services and tools a small team actually depends on.</dd></div>
+<div><dt>Hard part</dt><dd>Notes you can trust. Claude writes each one, saying who is affected, by when, and the ways out. It only publishes if its quote appears word for word in the saved vendor page; anything else waits for a person.</dd></div>
+<div><dt>Now</dt><dd>Live at stackquake.com, watching 222 sources across 59 services, with its first notes published. No users yet.</dd></div>
+</dl>
+<ul class="stats">
+<li><b>6 / 6</b><span>changes caught in the latest eval, with no false alerts on 7 routine posts</span></li>
+<li><b>222</b><span>pricing pages, feeds and registries watched</span></li>
+</ul>
+<ul class="tags" aria-label="Stack"><li>Cloudflare Workers</li><li>D1</li><li>TypeScript</li><li>Claude Haiku</li><li>Claude Opus</li></ul>
+<p class="links"><a href="https://stackquake.com">stackquake.com</a><a href="https://stackquake.com/events">Published notes</a></p>
+</div>
+</div>
+</article>
+
+</div>
+
+<section class="together" id="build-with-me" aria-labelledby="bwm-title">
+<p class="eyebrow">Build with me</p>
+<h2 id="bwm-title">The code is open. Pull up a chair.</h2>
+<p class="lede">Beckon and SpiralClass are public, with contributor guides, CI that runs the same checks you run locally, and issues written as plain problems rather than tickets.</p>
+<div class="repos">
+<a class="repo" href="https://github.com/jaystewartuk/beckon/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22%2C%22help%20wanted%22">
+<span class="repo-name">jaystewartuk/beckon</span>
+<span class="repo-desc">Go helper, Next.js service, installable web app. Start with a good first issue, or help with signed releases and self-hosting.</span>
+<span class="repo-meta"><span>Go</span><span>TypeScript</span><span>AGPL / MIT</span><span class="go">Open issues →</span></span>
+</a>
+<a class="repo" href="https://github.com/jaystewartuk/spiralclass/issues">
+<span class="repo-name">jaystewartuk/spiralclass</span>
+<span class="repo-desc">A real product with real payments. 146 decision records explain why things are the way they are, including the calls I reversed.</span>
+<span class="repo-meta"><span>TypeScript</span><span>Next.js</span><span>AGPL</span><span class="go">Open issues →</span></span>
+</a>
+</div>
+<div class="callout new">
+<p><strong>Got a problem you know better than anyone?</strong> I'm also open to building something new with the right person: someone who lives with a problem, or who can reach the people who have it. Building is the cheap part now. <a href="mailto:jay@jaystewart.co.uk?subject=Building%20something">Tell me what you've seen.</a></p>
+</div>
+</section>
+
 <section class="cta">
 <h2>Need a first version, or a second pair of hands?</h2>
 <p>Email me what you're building and what you need first. Within a working day I'll reply with whether it fits and what the first two weeks could look like.</p>
