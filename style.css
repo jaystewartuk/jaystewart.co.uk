@@ -201,8 +201,14 @@ li::marker { color: var(--faint); }
 .feature .stats { border-top-color: color-mix(in srgb, var(--p) 35%, var(--rule)); }
 .feature .stats b { font-variant-numeric: tabular-nums; }
 .feature .more { color: var(--p); }
-.story { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1rem 4rem; align-items: start; }
-.story .intro { position: sticky; top: 5rem; }
+.feature > .intro { max-width: 46rem; }
+.feature > .detail { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 0 4rem; align-items: start; }
+.feature > .detail .beats { margin: 0; }
+.feature > .detail .stats { grid-column: 2; grid-row: 1; border-top: 0; padding-top: 0.2rem; align-self: start; }
+.feature > .detail .tags, .feature > .detail .links { grid-column: 2; }
+/* The whole video fits on screen below the project bar, even on a short laptop window. */
+.feature > .media { width: min(100%, calc((100svh - 7.5rem) * 1.6)); margin-inline: auto; }
+.feature > .media.phone { width: 100%; }
 .media { position: relative; margin: 0; aspect-ratio: 16 / 10; border-radius: calc(var(--radius) + 4px); overflow: hidden; background: var(--chip); border: 1px solid var(--rule); box-shadow: 0 1px 2px rgb(20 20 25 / 0.05), 0 30px 60px -30px rgb(20 20 25 / 0.35); }
 .media.dark { background: #010409; border-color: #1c2128; }
 .media.phone { aspect-ratio: 4 / 5; }
@@ -217,10 +223,10 @@ li::marker { color: var(--faint); }
 .media video:fullscreen { object-fit: contain; background: #000; cursor: zoom-out; }
 .loop-toggle { position: absolute; right: 0.75rem; bottom: 0.75rem; font: 500 0.72rem/1 var(--mono); letter-spacing: 0.03em; color: #fff; background: rgb(20 20 25 / 0.55); border: 1px solid rgb(255 255 255 / 0.18); border-radius: 999px; padding: 0.45rem 0.7rem; cursor: pointer; opacity: 0; transition: opacity .2s; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .media:hover .loop-toggle, .loop-toggle:focus-visible, .loop-toggle[aria-label^="Play"] { opacity: 1; }
-.story h2 { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.4rem); letter-spacing: -0.03em; margin: 0.9rem 0 0.4rem; }
-.story h2 a { color: var(--text); text-decoration: none; }
-.story h2 a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
-.story .project-head { margin: 0; }
+.feature h2 { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.4rem); letter-spacing: -0.03em; margin: 0.9rem 0 0.4rem; }
+.feature h2 a { color: var(--text); text-decoration: none; }
+.feature h2 a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.feature .project-head { margin: 0; }
 .pitch { font-size: 1.3rem; line-height: 1.4; color: var(--text); margin: 0 0 1.5rem; letter-spacing: -0.01em; }
 .beats { margin: 0 0 1.5rem; display: grid; gap: 0.85rem; }
 .beats div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.75rem; }
@@ -250,8 +256,9 @@ li::marker { color: var(--faint); }
 .callout.new strong { color: var(--text); }
 
 @media (max-width: 900px) {
-  .story { grid-template-columns: 1fr; gap: 1.5rem; }
-  .story .intro { position: static; }
+  .feature > .detail { grid-template-columns: 1fr; gap: 1.5rem; }
+  .feature > .detail .stats, .feature > .detail .tags, .feature > .detail .links { grid-column: 1; grid-row: auto; }
+  .feature > .detail .stats { border-top: 1px solid var(--rule); padding-top: 1rem; }
   .feature { gap: 1.5rem; }
   .features { gap: 4.5rem; margin-top: 3rem; }
   .repos { grid-template-columns: 1fr; }
@@ -273,7 +280,7 @@ li::marker { color: var(--faint); }
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .feature .media { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
-    .feature .story, .together > :not(.repos), .repo, .cta { animation: fade-up linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+    .feature > .intro, .feature > .detail, .together > :not(.repos), .repo, .cta { animation: fade-up linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
   }
 }
 @media (prefers-reduced-motion: reduce) {
