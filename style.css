@@ -205,10 +205,8 @@ li::marker { color: var(--faint); }
 .feature { --p: var(--link); display: grid; gap: 2.25rem; scroll-margin-top: 5rem; }
 #spiralclass { --p: #4f5bd5; }
 #wanttojoin { --p: #1f7a6e; }
-#beckon { --p: #2563eb; }
-#stackquake { --p: #c2410c; }
 @media (prefers-color-scheme: dark) {
-  #spiralclass { --p: #8b93ff; } #wanttojoin { --p: #3cc4ae; } #beckon { --p: #6ea2ff; } #stackquake { --p: #fb8a4c; }
+  #spiralclass { --p: #8b93ff; } #wanttojoin { --p: #3cc4ae; }
 }
 .feature .media { box-shadow: 0 1px 2px rgb(20 20 25 / 0.05), 0 40px 90px -45px color-mix(in srgb, var(--p) 70%, transparent), 0 24px 50px -30px rgb(20 20 25 / 0.3); transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s; }
 .feature .media:hover { transform: translateY(-3px); }
@@ -331,3 +329,5 @@ li::marker { color: var(--faint); }
 @media (max-width: 360px) {
   .status { font-size: 0.8rem; }
 }
+.chip.parked::before, .chip.closed::before { content: ""; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--muted); opacity: 0.6; }
+.earlier { margin: 3rem 0 0; color: var(--muted); }
