@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes · Jay Stewart</title>
+<meta name="description" content="Short write-ups of engineering decisions on SpiralClass: why the money never touches the platform, a Stripe checkout that lied about its payment methods, and 1,265 tests that ran nowhere.">
+<link rel="canonical" href="https://jaystewart.co.uk/notes/">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jaystewart.co.uk/notes/">
+<meta property="og:title" content="Notes · Jay Stewart">
+<meta property="og:description" content="Short write-ups of engineering decisions on SpiralClass, from the decision records in the repo.">
+<meta property="og:image" content="https://jaystewart.co.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="wide-page text">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="/">Jay Stewart</a>
+<nav aria-label="Main"><a href="/work/spiralclass/">Work</a><a href="/notes/" aria-current="page">Notes</a><a href="/working-with-me/">Working with me</a><a href="/contact/">Contact</a></nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="eyebrow">Notes</p>
+<h1>Three decisions, written up.</h1>
+<p class="lede">SpiralClass keeps <a href="https://github.com/jaystewartuk/spiralclass/tree/main/docs/decisions">146 decision records</a> in the repo, written as the work happened. These are three of them, rewritten for someone who hasn't read the code.</p>
+
+<article class="note" id="direct-charges">
+<p class="note-meta">From <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-143.md">D-143</a> · August 2026</p>
+<h2>Why the money never touches the platform</h2>
+<p>The first design was Stripe's separate charges and transfers. A student's money landed on the platform's balance and a transfer forwarded the net to the teacher. It is the pattern most marketplaces start with, and it was wrong for this one.</p>
+<p>A UK platform can only transfer to connected accounts inside Stripe's cross-border payout circle. That is 31 countries, and the launch market was not one of them. Which payment methods a checkout offers is decided by the merchant's country too, so a UK charge could never show OXXO or SPEI to a student there, whatever the account settings said. And disputes debited the platform first, to be clawed back from a teacher who might already have withdrawn.</p>
+<p>Two earlier records had circled this. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-58.md">D-58</a> excluded the launch market because of the circle. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-137.md">D-137</a> made "the platform never touches the funds" a constraint and went looking for a card rail outside Connect: payment links the teacher would hold herself. Both reasoned correctly about the circle. The mistake was choosing a funds flow that needed one.</p>
+<p>The fix was direct charges. The charge is created on the teacher's connected account, settles in her country, and Stripe pays her out locally. Accounts v2 with a full dashboard, so she has a real Stripe account in her own name and Stripe handles her verification. Fees and chargebacks are hers, at her country's rates, and the product now says so plainly (<a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-152.md">D-152</a>).</p>
+<p>What it removed: the transfer module, the balance read-back and the reversal-on-refund path. There is nothing to reverse because the platform never held anything. Wise stays as the rail for the five countries where Stripe refuses a merchant account and for everywhere outside the measured list (<a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-145.md">D-145</a>).</p>
+<p>What it cost: Pix is unreachable on Accounts v2, and a teacher's existing Stripe account cannot be connected, because v2 has no OAuth. Both are in the record, with the errors that proved them.</p>
+</article>
+
+<article class="note" id="green-flag">
+<p class="note-meta">From <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-143.md#addendum-2026-08-31--the-capability-is-only-half-the-gate">D-143, addendum</a> · 31 August 2026</p>
+<h2>A green flag isn't proof</h2>
+<p>The day after direct charges went live, an early teacher onboarded and I opened a live checkout against her account.</p>
+<p>Her account said everything was on: card payments active, OXXO active, bank transfers active, charges and payouts enabled, nothing outstanding. The checkout session came back with cards only. The hosted page showed cards only.</p>
+<p>What decides the methods a checkout offers is not the capability. It is the connected account's payment method configuration, which Stripe creates as a child of the platform's parent configuration. Hers had inherited OXXO off and bank transfers off from a UK parent. The giveaway was that she had also inherited Bancontact, EPS and iDEAL, switched on but unavailable in her country. Her local capabilities were live and irrelevant.</p>
+<p>The parent cannot be changed from code. The API answers that platform parent configurations can only be managed in the dashboard. Settings, Connect, Payment methods, connected accounts: OXXO under Vouchers, and Bank Transfers, which is how SPEI surfaces, were both off by default. Switching them on propagated to her account immediately, and the next session offered card, OXXO and bank transfer.</p>
+<p>So a local payment method needs two things: the capability requested when the account is created, and the method switched on in the dashboard parent. The API-side one is the one that lies. An active capability with the parent off is silently card-only, on an account that looks perfectly healthy.</p>
+<p>The same probe found two capability names in the country registry that Accounts v2 rejects outright. A mocked Stripe accepts any string, so no unit test could have caught it, and a Brazilian teacher would have failed to create an account at all. Both names are out, with a test that fails if they come back and a script that measures the real API before a country is added.</p>
+</article>
+
+<article class="note" id="tests-that-ran-nowhere">
+<p class="note-meta">From <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-160.md">D-160</a> · September 2026</p>
+<h2>1,265 tests that ran nowhere</h2>
+<p>The pre-push hook, the gate command and the CI workflow all ran one unit step, filtered to the web app. The shared package, 1,196 tests across 71 files, and the captions agent, 69 across 9, were run by the workspace-wide test script and by nothing the gate ever invoked. The step named one package. A list that doesn't grow fails like this, and a list of two names would have failed the same way when the third package arrived.</p>
+<p>I added a step that runs every package under the packages folder, filtered by path. It was red on main the day it landed, and had been for a day.</p>
+<p>One failure was real. The weekday labels are formatted from UTC anchor dates, and Intl.DateTimeFormat formats in the host zone unless told otherwise. West of Greenwich every label slid back a day: a machine on UTC−6 rendered Sunday's column as Saturday. Production is UTC and the GitHub runner is UTC, so every machine that had ever run the code agreed it was correct. The one machine that would have caught it was my laptop, which is exactly where <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-119.md">D-119</a> had moved the checks, and the gate wasn't running the suite that held the test.</p>
+<p>The other two were stale assertions left by a pass that renamed a real teacher out of the tree before the repo went public. The fixture inputs changed; the expected values didn't. One of those assertions was the last place her real name survived, three days before publication.</p>
+<p>What I kept from it: a suite that isn't in the gate is documentation, and the gate's list of what to run should come from the tree, not from a hand-typed list.</p>
+</article>
+
+<nav class="next" aria-label="More">
+<a href="/work/spiralclass/">← The case study</a>
+<a href="/contact/">Get in touch →</a>
+</nav>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>Jay Stewart · Software engineer</span>
+<nav aria-label="Elsewhere"><a href="mailto:jay@jaystewart.co.uk">Email</a><a href="https://www.linkedin.com/in/jaystewartuk/">LinkedIn</a><a href="https://github.com/jaystewartuk">GitHub</a><a href="/Jay-Stewart-CV.pdf">CV</a></nav>
+</div>
+</footer>
+</body>
+</html>
