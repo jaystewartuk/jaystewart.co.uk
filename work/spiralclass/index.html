@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SpiralClass · Jay Stewart</title>
-<meta name="description" content="Case study: SpiralClass, a scheduling, payments and video platform for independent teachers, built and run solo, with Stripe Connect direct charges and a reconciled Wise rail.">
+<meta name="description" content="Case study: SpiralClass, a scheduling, payments and video platform for independent teachers, built and run solo, with Stripe Connect direct charges, live translated captions and an LLM pipeline that turns each class into learning notes.">
 <link rel="canonical" href="https://jaystewart.co.uk/work/spiralclass/">
 <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
@@ -39,7 +39,7 @@
 <dl class="meta">
 <div><dt>Role</dt><dd>Everything, solo, with coding agents under review</dd></div>
 <div><dt>Status</dt><dd><span class="chip live">Live</span> One teacher, eight students, real payments</dd></div>
-<div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, self-hosted LiveKit video</dd></div>
+<div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, LiveKit video, Claude, Deepgram, Google translation</dd></div>
 <div><dt>Links</dt><dd><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a></dd></div>
 </dl>
 <article class="prose">
@@ -52,6 +52,10 @@
 <h2>The teacher owns the method</h2>
 <p>One teacher had her own lesson structure; the AI lesson writer ignored it. Now teachers save templates, and the AI fills the chosen one for each student's level and goals. Optional, and it works for any subject.</p>
 
+<h2>Captions and learning notes</h2>
+<p>The teacher turns on live captions and each side sees the other's words as they are spoken, then the translation when the phrase ends. The browser does the recognising and, where it can, the translating. Deepgram covers a phone; Google covers the translation when the browser can't. No server listens, so it costs nothing to run.</p>
+<p>With the student's consent the same text is kept as the class transcript. After class, Claude turns it into findings in five areas, each tied to the line that showed it. The teacher confirms or dismisses each one before it counts. The confirmed ones build the student's profile and a short brief before the next class.</p>
+
 <h2>Rules where they matter</h2>
 <ul>
 <li>A cancelled class restores or forfeits the right credit.</li>
@@ -62,7 +66,7 @@
 <figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-calendar-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-calendar.webp" srcset="/media/spiralclass/still-calendar-800.webp 800w, /media/spiralclass/still-calendar.webp 1600w" sizes="70rem" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></picture></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
 
 <h2>What's proven</h2>
-<p>A running product with real payments: one teacher, eight students. Not scale yet, and no proof yet that the checkout changes lift conversion.</p>
+<p>A running product with real payments: one teacher, eight students, and the captions in her classes. Not scale yet, and no proof yet that the checkout changes lift conversion.</p>
 <figure class="quote">
 <blockquote><p>He listens carefully, understands my needs, and responds to feedback with impressive speed and
 precision. He also brings a great deal of creativity and initiative to the table, often suggesting
