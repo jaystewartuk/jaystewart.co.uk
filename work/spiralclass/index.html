@@ -61,7 +61,7 @@
 <p>One teacher had her own lesson structure; the AI lesson writer ignored it. Now teachers save templates, and the AI fills the chosen one for each student's level and goals. Optional, and it works for any subject.</p>
 
 <h2>Captions and learning notes</h2>
-<p>The teacher turns on live captions and each side sees the other's words as they are spoken, then the translation when the phrase ends. The browser does the recognising and, where it can, the translating. Deepgram covers a phone; Google covers the translation when the browser can't. No server listens, so it costs nothing to run. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-185.md">D-185</a> says why the earlier server-side design went.</p>
+<p>The teacher turns on live captions and each side sees the other's words as they are spoken, then the translation when the phrase ends. The browser does the recognising and, where it can, the translating. Deepgram covers a phone; Google covers the translation when the browser can't. Recognition runs in the browser, so no server of mine handles the audio, and it costs almost nothing to run. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-185.md">D-185</a> says why the earlier server-side design went.</p>
 <p>With the student's consent the same text is kept as the class transcript. After class, Claude turns it into findings in five areas, each tied to the line that showed it. The teacher confirms or dismisses each one before it counts. The confirmed ones build the student's profile and a short brief before the next class.</p>
 
 <h2>Rules where they matter</h2>
