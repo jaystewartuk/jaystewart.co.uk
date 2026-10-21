@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpiralClass · Jay Stewart</title>
+<meta name="description" content="Case study: SpiralClass, a scheduling, payments and video platform for independent teachers, built and run solo, with Stripe Connect direct charges, live translated captions and an LLM pipeline that turns each class into learning notes.">
+<link rel="canonical" href="https://jaystewart.co.uk/work/spiralclass/">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jaystewart.co.uk/work/spiralclass/">
+<meta property="og:title" content="SpiralClass · case study">
+<meta property="og:description" content="A scheduling, payments and video platform for independent teachers, built and run solo.">
+<meta property="og:image" content="https://jaystewart.co.uk/og/spiralclass.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script src="/loops.js" defer></script>
+</head>
+<body class="wide-page case">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="/">Jay Stewart</a>
+<nav aria-label="Main"><a href="/work/spiralclass/" aria-current="page">Work</a><a href="/notes/">Notes</a><a href="/working-with-me/">Working with me</a><a href="/contact/">Contact</a></nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="eyebrow">Case study</p>
+<h1 style="view-transition-name: title-spiralclass">SpiralClass</h1>
+<p class="lede">Booking, class packages, payments and video for independent teachers. Built and run solo.</p>
+<figure style="view-transition-name: media-spiralclass" class="hero-shot media"><video class="loop" muted loop playsinline preload="metadata" width="1600" height="1000" poster="/media/spiralclass/poster.webp" data-phone="spiralclass" data-phone-label="On a phone, a student fills in her details, picks a 4:00 PM time slot, pays, and sees a confirmation with her first class (demo data)." aria-label="A student books and pays for a class on her phone, and the class appears on the teacher’s schedule (demo data)."><source src="/media/spiralclass/loop.webm" type='video/webm; codecs="vp9"'><source src="/media/spiralclass/loop.mp4" type='video/mp4; codecs="avc1.640032"'></video></figure>
+<dl class="meta">
+<div><dt>Role</dt><dd>Everything, solo, with coding agents under review</dd></div>
+<div><dt>Status</dt><dd><span class="chip live">Live</span> One teacher, eight students, real payments</dd></div>
+<div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, LiveKit video, Claude, Deepgram, Google translation</dd></div>
+<div><dt>Links</dt><dd><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a> · <a href="https://github.com/jaystewartuk/spiralclass/tree/main/docs/decisions">decision records</a> · <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/architecture/overview.md">architecture</a></dd></div>
+</dl>
+<article class="prose">
+<h2>Payments that skip the platform</h2>
+<p>The first design collected money on the platform and passed it on. That broke payouts in the launch market and put the platform in the middle of disputes.</p>
+<p>Now Stripe charges on the teacher's own account and pays her locally. Wise covers teachers outside Stripe.</p>
+<figure class="flow">
+<ol class="flow-steps">
+<li><span class="label">1 · Student</span><div class="node"><b>Picks a package</b><small>On the teacher's booking page. A pending payment and a unique reference are written before any money moves.</small></div></li>
+<li><span class="label">2 · One of two rails</span><div class="node rail"><b>Stripe Checkout</b><small>The charge is created on the teacher's own Stripe account. Her country decides the methods: cards, OXXO, SPEI.</small></div><span class="or">or</span><div class="node rail"><b>Wise</b><small>A transfer to her Wise account quoting the reference. Her own API credentials reconcile it.</small></div></li>
+<li><span class="label">3 · SpiralClass</span><div class="node"><b>Marks it paid</b><small>A webhook or a poll confirms the payment and activates the package in one transaction. Then Inngest books the chosen slot and sends the confirmation.</small></div></li>
+<li><span class="label">4 · Teacher</span><div class="node"><b>Has the money</b><small>Stripe pays her out locally. Wise money was hers from the start. The platform never holds it, so there is nothing to forward, withhold or reverse.</small></div></li>
+</ol>
+<figcaption>How a payment moves since 30 August 2026. Before that the platform collected and forwarded, which a UK entity cannot do to most of the world. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-143.md">D-143</a> records the reversal and what two earlier records got wrong.</figcaption>
+</figure>
+<figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-student-flow-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-student-flow.webp" srcset="/media/spiralclass/still-student-flow-800.webp 800w, /media/spiralclass/still-student-flow.webp 1600w" sizes="70rem" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></picture></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
+<p>One catch: a live checkout showed cards only, though the account said local methods were on. It had inherited a dashboard setting. I fixed it and checked OXXO and SPEI in a real checkout. A green flag isn't proof. <a href="/notes/#green-flag">The longer version</a> is in my notes.</p>
+
+<h2>The teacher owns the method</h2>
+<p>One teacher had her own lesson structure; the AI lesson writer ignored it. Now teachers save templates, and the AI fills the chosen one for each student's level and goals. Optional, and it works for any subject.</p>
+
+<h2>Captions and learning notes</h2>
+<p>The teacher turns on live captions and each side sees the other's words as they are spoken, then the translation when the phrase ends. The browser does the recognising and, where it can, the translating. Deepgram covers a phone; Google covers the translation when the browser can't. Recognition runs in the browser, so no server of mine handles the audio, and it costs almost nothing to run. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-185.md">D-185</a> says why the earlier server-side design went.</p>
+<p>With the student's consent the same text is kept as the class transcript. After class, Claude turns it into findings in five areas, each tied to the line that showed it. The teacher confirms or dismisses each one before it counts. The confirmed ones build the student's profile and a short brief before the next class.</p>
+
+<h2>Rules where they matter</h2>
+<ul>
+<li>A cancelled class restores or forfeits the right credit. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/src/lib/cancellation/classify.ts">classify.ts</a></li>
+<li>Each payment reconciles to the right student and package. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/src/lib/payments/reconcile-paid.ts">reconcile-paid.ts</a>, <a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/src/lib/payments/wise-reconcile.ts">wise-reconcile.ts</a></li>
+<li>Students see only their own teacher's content. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/SECURITY.md">SECURITY.md</a> says a missing teacher scope is a vulnerability, not a style nit.</li>
+</ul>
+<p>The rules are pure functions; the handlers apply them. This one decides what a student's cancellation does:</p>
+<figure class="code">
+<pre><code><span class="c">// Decides what a student-initiated cancel does, given the package's
+// schedule-change budget. Pure — the handler applies the mutations.</span>
+export function decideStudentCancel(input: {
+  now: Date;
+  scheduledStart: Date;
+  scheduleChangesUsed: number;
+  scheduleChangesAllowed: number;
+}): StudentCancelDecision {
+  const c = classifyStudentCancel({
+    now: input.now,
+    scheduledStart: input.scheduledStart,
+  });
+  if (c.deductsClass) {
+    <span class="c">// &lt;24h: forfeit (the penalty). Always allowed, never a schedule change.</span>
+    return {
+      timing: c.timing,
+      refundsClass: false,
+      chargesScheduleChange: false,
+      blockedExhausted: false,
+    };
+  }
+  <span class="c">// ≥24h: a refundable cancel is a schedule change — gate it on the budget.</span>
+  const exhausted = input.scheduleChangesUsed &gt;= input.scheduleChangesAllowed;
+  return {
+    timing: c.timing,
+    refundsClass: !exhausted,
+    chargesScheduleChange: !exhausted,
+    blockedExhausted: exhausted,
+  };
+}</code></pre>
+<figcaption><a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/src/lib/cancellation/classify.ts#L98-L127">classify.ts, lines 98 to 127</a>, with <a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/tests/cancellation/classify.test.ts">its tests</a>. The budget exists because a per-booking cap could be dodged by cancelling and rebooking; <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-08.md">D-08</a> has the arithmetic.</figcaption>
+</figure>
+<p>Domain modules are tested against a real database, <a href="https://github.com/jaystewartuk/spiralclass/tree/main/apps/web/tests">about 880 test files</a> in all. <a href="https://github.com/jaystewartuk/spiralclass/tree/main/docs/decisions">146 decision records</a> say why things are the way they are, reversals included.</p>
+<figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-calendar-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-calendar.webp" srcset="/media/spiralclass/still-calendar-800.webp 800w, /media/spiralclass/still-calendar.webp 1600w" sizes="70rem" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></picture></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
+
+<h2>What's proven</h2>
+<p>A running product with real payments: one teacher, eight students, and the captions in her classes. Not scale yet, and no proof yet that the checkout changes lift conversion.</p>
+<figure class="quote">
+<blockquote><p>He listens carefully, understands my needs, and responds to feedback with impressive speed and
+precision. He also brings a great deal of creativity and initiative to the table, often suggesting
+features I would never have thought of myself, like the subtitles, which have made a real
+difference to my experience as an online Spanish teacher.</p></blockquote>
+<figcaption>Ana Laura, Spanish teacher on SpiralClass</figcaption>
+</figure>
+</article>
+<nav class="next" aria-label="More">
+<a href="/notes/">Notes on three of the decisions →</a>
+<a href="/contact/">Get in touch →</a>
+</nav>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>Jay Stewart · Software engineer</span>
+<nav aria-label="Elsewhere"><a href="mailto:jay@jaystewart.co.uk">Email</a><a href="https://www.linkedin.com/in/jaystewartuk/">LinkedIn</a><a href="https://github.com/jaystewartuk">GitHub</a><a href="/Jay-Stewart-CV.pdf">CV</a></nav>
+</div>
+</footer>
+</body>
+</html>
