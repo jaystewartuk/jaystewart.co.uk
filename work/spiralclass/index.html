@@ -37,7 +37,7 @@
 <figure style="view-transition-name: media-spiralclass" class="hero-shot media"><video class="loop" muted loop playsinline preload="metadata" width="1600" height="1000" poster="/media/spiralclass/poster.webp" data-phone="spiralclass" data-phone-label="On a phone, a student fills in her details, picks a 4:00 PM time slot, pays, and sees a confirmation with her first class (demo data)." aria-label="A student books and pays for a class on her phone, and the class appears on the teacher’s schedule (demo data)."><source src="/media/spiralclass/loop.webm" type='video/webm; codecs="vp9"'><source src="/media/spiralclass/loop.mp4" type='video/mp4; codecs="avc1.640032"'></video></figure>
 <dl class="meta">
 <div><dt>Role</dt><dd>Everything, solo, with coding agents under review</dd></div>
-<div><dt>Status</dt><dd><span class="chip live">Live</span> One teacher, eight students, real payments</dd></div>
+<div><dt>Status</dt><dd><span class="chip live">Live</span> Used by a teacher and her students, taking real payments</dd></div>
 <div><dt>Stack</dt><dd>TypeScript, Next.js, Postgres and Prisma, Stripe Connect, Wise, LiveKit video, Claude, Deepgram, Google translation</dd></div>
 <div><dt>Links</dt><dd><a href="https://spiralclass.com">spiralclass.com</a> · <a href="https://spiralclass.com/demo">demo</a> · <a href="https://github.com/jaystewartuk/spiralclass">source</a> · <a href="https://github.com/jaystewartuk/spiralclass/tree/main/docs/decisions">decision records</a> · <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/architecture/overview.md">architecture</a></dd></div>
 </dl>
@@ -55,7 +55,7 @@
 <figcaption>How a payment moves since 30 August 2026. Before that the platform collected and forwarded, which a UK entity cannot do to most of the world. <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-143.md">D-143</a> records the reversal and what two earlier records got wrong.</figcaption>
 </figure>
 <figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-student-flow-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-student-flow.webp" srcset="/media/spiralclass/still-student-flow-800.webp 800w, /media/spiralclass/still-student-flow.webp 1600w" sizes="70rem" width="1600" height="1000" alt="Three phone screens showing a student choosing a class package, picking a time and paying, and seeing confirmation." loading="lazy" decoding="async"></picture></div><figcaption>The student's side: choose a package, pick a first class, pay the teacher directly. Demo data.</figcaption></figure>
-<p>One catch: a live checkout showed cards only, though the account said local methods were on. It had inherited a dashboard setting. I fixed it and checked OXXO and SPEI in a real checkout. A green flag isn't proof. <a href="/notes/#green-flag">The longer version</a> is in my notes.</p>
+<p>One catch: a live checkout showed cards only, though the account said local methods were on. It had inherited a dashboard setting. Correcting it made OXXO and SPEI appear in a real checkout. A green flag isn't proof. <a href="/notes/#green-flag">The longer version</a> is in my notes.</p>
 
 <h2>The teacher owns the method</h2>
 <p>One teacher had her own lesson structure; the AI lesson writer ignored it. Now teachers save templates, and the AI fills the chosen one for each student's level and goals. Optional, and it works for any subject.</p>
@@ -102,13 +102,13 @@ export function decideStudentCancel(input: {
     blockedExhausted: exhausted,
   };
 }</code></pre>
-<figcaption><a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/src/lib/cancellation/classify.ts#L98-L127">classify.ts, lines 98 to 127</a>, with <a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/tests/cancellation/classify.test.ts">its tests</a>. The budget exists because a per-booking cap could be dodged by cancelling and rebooking; <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/decisions/D-08.md">D-08</a> has the arithmetic.</figcaption>
+<figcaption><a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/src/lib/cancellation/classify.ts#L98-L127">classify.ts, lines 98 to 127</a>, with <a href="https://github.com/jaystewartuk/spiralclass/blob/main/apps/web/tests/cancellation/classify.test.ts">its tests</a>. The budget exists because a per-booking cap could be dodged by cancelling and rebooking; <a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/features/scheduling-booking.md">the scheduling rules</a> explain the policy.</figcaption>
 </figure>
-<p>Domain modules are tested against a real database, <a href="https://github.com/jaystewartuk/spiralclass/tree/main/apps/web/tests">about 880 test files</a> in all. <a href="https://github.com/jaystewartuk/spiralclass/tree/main/docs/decisions">146 decision records</a> say why things are the way they are, reversals included.</p>
+<p><a href="https://github.com/jaystewartuk/spiralclass/blob/main/docs/development/testing.md">Automated unit, integration and browser checks</a> run before changes are merged, including domain tests against a real database. <a href="https://github.com/jaystewartuk/spiralclass/tree/main/docs/decisions">Documented engineering decisions</a> say why things are the way they are, reversals included.</p>
 <figure class="inline-shot"><div class="media has-phone"><picture><source media="(max-width: 640px)" srcset="/media/spiralclass/still-calendar-phone.webp" width="720" height="900"><img src="/media/spiralclass/still-calendar.webp" srcset="/media/spiralclass/still-calendar-800.webp 800w, /media/spiralclass/still-calendar.webp 1600w" sizes="70rem" width="1600" height="1000" alt="A month calendar of a teacher's classes with a newly booked 4:00 PM class on 13 October." loading="lazy" decoding="async"></picture></div><figcaption>The teacher's month, with the class just booked on the 13th. Demo data.</figcaption></figure>
 
 <h2>What's proven</h2>
-<p>A running product with real payments: one teacher, eight students, and the captions in her classes. Not scale yet, and no proof yet that the checkout changes lift conversion.</p>
+<p>A running product used by a teacher and her students, taking real payments, with captions used in her classes. It's a small product; there is no claim of scale or measured checkout conversion gains.</p>
 <figure class="quote">
 <blockquote><p>He listens carefully, understands my needs, and responds to feedback with impressive speed and
 precision. He also brings a great deal of creativity and initiative to the table, often suggesting
